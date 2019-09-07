@@ -5,11 +5,9 @@ import java.util.List;
 import org.loyer.komoo.beans.ViewData;
 import org.loyer.komoo.dao.Ikm036smtDao;
 import org.loyer.komoo.service.IViewDataService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class Km036smtServiceImpl implements IViewDataService {
   
-  //@Autowired
   private Ikm036smtDao dao;
   
   public void setDao(Ikm036smtDao dao) {
