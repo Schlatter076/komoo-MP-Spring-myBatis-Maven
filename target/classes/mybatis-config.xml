@@ -11,5 +11,7 @@
   
   <mappers>
     <package name="org.loyer.komoo.dao"/>
+    <!-- 当mapper文件和dao不同名或不在同一位置时，配置 -->
+    <!-- <mapper resource="org/loyer/komoo/client/Ikm036smtDao.xml" /> -->
   </mappers>
 </configuration>

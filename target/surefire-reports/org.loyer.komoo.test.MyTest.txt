@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: org.loyer.komoo.test.MyTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 9.197 s <<< FAILURE! - in org.loyer.komoo.test.MyTest
+test01(org.loyer.komoo.test.MyTest)  Time elapsed: 3.043 s  <<< ERROR!
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): org.loyer.komoo.dao.Ikm036smtDao.selectAll
+	at org.loyer.komoo.test.MyTest.test01(MyTest.java:28)
+Caused by: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for org.loyer.komoo.dao.Ikm036smtDao.selectAll
+	at org.loyer.komoo.test.MyTest.test01(MyTest.java:28)
+
+test02(org.loyer.komoo.test.MyTest)  Time elapsed: 2.301 s  <<< ERROR!
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): org.loyer.komoo.dao.Ikm030smtDao.selectAll
+	at org.loyer.komoo.test.MyTest.test02(MyTest.java:36)
+Caused by: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for org.loyer.komoo.dao.Ikm030smtDao.selectAll
+	at org.loyer.komoo.test.MyTest.test02(MyTest.java:36)
+
+test04(org.loyer.komoo.test.MyTest)  Time elapsed: 2.004 s  <<< ERROR!
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): org.loyer.komoo.dao.Ikm034smtDao.selectAll
+	at org.loyer.komoo.test.MyTest.test04(MyTest.java:52)
+Caused by: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for org.loyer.komoo.dao.Ikm034smtDao.selectAll
+	at org.loyer.komoo.test.MyTest.test04(MyTest.java:52)
+
+test07(org.loyer.komoo.test.MyTest)  Time elapsed: 1.812 s  <<< ERROR!
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): org.loyer.komoo.dao.IUserDao.selectUserById
+	at org.loyer.komoo.test.MyTest.test07(MyTest.java:75)
+Caused by: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for org.loyer.komoo.dao.IUserDao.selectUserById
+	at org.loyer.komoo.test.MyTest.test07(MyTest.java:75)
+

@@ -23,22 +23,15 @@
 	</bean>
 
 	<!-- 配置数据源 -->
-	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
-		<property name="driverClassName"> <value>${jdbc.driver}</value> </property> 
-		<property name="url"> <value>${jdbc.url}</value> </property> <property name="username"> 
-		<value>${jdbc.username}</value> </property> <property name="password"> <value>${jdbc.password}</value> 
-		</property> </bean> -->
-
-	<!-- 使用C3P0连接池连接 -->
 	<bean id="dataSource"
-		class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass">
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
 			<value>${jdbc.driver}</value>
 		</property>
-		<property name="jdbcUrl">
+		<property name="url">
 			<value>${jdbc.url}</value>
 		</property>
-		<property name="user">
+		<property name="username">
 			<value>${jdbc.username}</value>
 		</property>
 		<property name="password">
@@ -46,27 +39,189 @@
 		</property>
 	</bean>
 
+	<!-- 使用C3P0连接池连接 -->
+	<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"> 
+		<property name="driverClass"> <value>${jdbc.driver}</value> </property> <property 
+		name="jdbcUrl"> <value>${jdbc.url}</value> </property> <property name="user"> 
+		<value>${jdbc.username}</value> </property> <property name="password"> <value>${jdbc.password}</value> 
+		</property> </bean> -->
+
 	<!-- 配置sqlSessionFactory -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		<!-- 配置mybatis主配置文件位置 -->
 		<property name="configLocation"
 			value="classpath:mybatis-config.xml" />
 	</bean>
 	<!-- 自动扫描了所有的mapper接口文件 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName"
-			value="sqlSessionFactory"></property>
+			value="sqlSessionFactory"/>
 		<property name="basePackage" value="org.loyer.komoo.dao" />
 	</bean>
-
+  
 	<!-- 自动扫描注解的bean -->
 	<context:component-scan
 		base-package="com.loyer.komoo.service.impl" />
 	<!-- 配置自定义bean -->
+	<!-- 036 -->
 	<bean id="km036smtService"
 		class="org.loyer.komoo.service.impl.Km036smtServiceImpl">
-		<property name="dao" ref="ikm036smtDao"></property>
+		<property name="dao" ref="ikm036smtDao"/>
 	</bean>
+	<bean id="km036smtRecordService"
+    class="org.loyer.komoo.service.impl.Km036smtRecordServiceImpl">
+    <property name="dao" ref="ikm036smtRecordDao"/>
+  </bean>
+  <bean id="km036smtTestService"
+    class="org.loyer.komoo.service.impl.Km036smtTestServiceImpl">
+    <property name="dao" ref="ikm036smtTestDao"/>
+  </bean>
+  <bean id="km036unitService"
+    class="org.loyer.komoo.service.impl.Km036unitServiceImpl">
+    <property name="dao" ref="ikm036unitDao"/>
+  </bean>
+  <bean id="km036unitRecordService"
+    class="org.loyer.komoo.service.impl.Km036unitRecordServiceImpl">
+    <property name="dao" ref="ikm036unitRecordDao"/>
+  </bean>
+  <bean id="km036unitTestService"
+    class="org.loyer.komoo.service.impl.Km036unitTestServiceImpl">
+    <property name="dao" ref="ikm036unitTestDao"/>
+  </bean>
+  <!-- 030 -->
+  <bean id="km030smtService"
+    class="org.loyer.komoo.service.impl.Km030smtServiceImpl">
+    <property name="dao" ref="ikm030smtDao"/>
+  </bean>
+  <bean id="km030smtRecordService"
+    class="org.loyer.komoo.service.impl.Km030smtRecordServiceImpl">
+    <property name="dao" ref="ikm030smtRecordDao"/>
+  </bean>
+  <bean id="km030smtTestService"
+    class="org.loyer.komoo.service.impl.Km030smtTestServiceImpl">
+    <property name="dao" ref="ikm030smtTestDao"/>
+  </bean>
+  <bean id="km030unitService"
+    class="org.loyer.komoo.service.impl.Km030unitServiceImpl">
+    <property name="dao" ref="ikm030unitDao"/>
+  </bean>
+  <bean id="km030unitRecordService"
+    class="org.loyer.komoo.service.impl.Km030unitRecordServiceImpl">
+    <property name="dao" ref="ikm030unitRecordDao"/>
+  </bean>
+  <bean id="km030unitTestService"
+    class="org.loyer.komoo.service.impl.Km030unitTestServiceImpl">
+    <property name="dao" ref="ikm030unitTestDao"/>
+  </bean>
+  <!-- 033 -->
+  <bean id="km033smtService"
+    class="org.loyer.komoo.service.impl.Km033smtServiceImpl">
+    <property name="dao" ref="ikm033smtDao"/>
+  </bean>
+  <bean id="km033smtRecordService"
+    class="org.loyer.komoo.service.impl.Km033smtRecordServiceImpl">
+    <property name="dao" ref="ikm033smtRecordDao"/>
+  </bean>
+  <bean id="km033smtTestService"
+    class="org.loyer.komoo.service.impl.Km033smtTestServiceImpl">
+    <property name="dao" ref="ikm033smtTestDao"/>
+  </bean>
+  <bean id="km033unitService"
+    class="org.loyer.komoo.service.impl.Km033unitServiceImpl">
+    <property name="dao" ref="ikm033unitDao"/>
+  </bean>
+  <bean id="km033unitRecordService"
+    class="org.loyer.komoo.service.impl.Km033unitRecordServiceImpl">
+    <property name="dao" ref="ikm033unitRecordDao"/>
+  </bean>
+  <bean id="km033unitTestService"
+    class="org.loyer.komoo.service.impl.Km033unitTestServiceImpl">
+    <property name="dao" ref="ikm033unitTestDao"/>
+  </bean>
+  <!-- 034 -->
+  <bean id="km034smtService"
+    class="org.loyer.komoo.service.impl.Km034smtServiceImpl">
+    <property name="dao" ref="ikm034smtDao"/>
+  </bean>
+  <bean id="km034smtRecordService"
+    class="org.loyer.komoo.service.impl.Km034smtRecordServiceImpl">
+    <property name="dao" ref="ikm034smtRecordDao"/>
+  </bean>
+  <bean id="km034smtTestService"
+    class="org.loyer.komoo.service.impl.Km034smtTestServiceImpl">
+    <property name="dao" ref="ikm034smtTestDao"/>
+  </bean>
+  <bean id="km034unitService"
+    class="org.loyer.komoo.service.impl.Km034unitServiceImpl">
+    <property name="dao" ref="ikm034unitDao"/>
+  </bean>
+  <bean id="km034unitRecordService"
+    class="org.loyer.komoo.service.impl.Km034unitRecordServiceImpl">
+    <property name="dao" ref="ikm034unitRecordDao"/>
+  </bean>
+  <bean id="km034unitTestService"
+    class="org.loyer.komoo.service.impl.Km034unitTestServiceImpl">
+    <property name="dao" ref="ikm034unitTestDao"/>
+  </bean>
+  <!-- 047 -->
+  <bean id="km047smtService"
+    class="org.loyer.komoo.service.impl.Km047smtServiceImpl">
+    <property name="dao" ref="ikm047smtDao"/>
+  </bean>
+  <bean id="km047smtRecordService"
+    class="org.loyer.komoo.service.impl.Km047smtRecordServiceImpl">
+    <property name="dao" ref="ikm047smtRecordDao"/>
+  </bean>
+  <bean id="km047smtTestService"
+    class="org.loyer.komoo.service.impl.Km047smtTestServiceImpl">
+    <property name="dao" ref="ikm047smtTestDao"/>
+  </bean>
+  <bean id="km047unitService"
+    class="org.loyer.komoo.service.impl.Km047unitServiceImpl">
+    <property name="dao" ref="ikm047unitDao"/>
+  </bean>
+  <bean id="km047unitRecordService"
+    class="org.loyer.komoo.service.impl.Km047unitRecordServiceImpl">
+    <property name="dao" ref="ikm047unitRecordDao"/>
+  </bean>
+  <bean id="km047unitTestService"
+    class="org.loyer.komoo.service.impl.Km047unitTestServiceImpl">
+    <property name="dao" ref="ikm047unitTestDao"/>
+  </bean>
+  <!-- 070 -->
+  <bean id="km070smtService"
+    class="org.loyer.komoo.service.impl.Km070smtServiceImpl">
+    <property name="dao" ref="ikm070smtDao"/>
+  </bean>
+  <bean id="km070smtRecordService"
+    class="org.loyer.komoo.service.impl.Km070smtRecordServiceImpl">
+    <property name="dao" ref="ikm070smtRecordDao"/>
+  </bean>
+  <bean id="km070smtTestService"
+    class="org.loyer.komoo.service.impl.Km070smtTestServiceImpl">
+    <property name="dao" ref="ikm070smtTestDao"/>
+  </bean>
+  <bean id="km070unitService"
+    class="org.loyer.komoo.service.impl.Km070unitServiceImpl">
+    <property name="dao" ref="ikm070unitDao"/>
+  </bean>
+  <bean id="km070unitRecordService"
+    class="org.loyer.komoo.service.impl.Km070unitRecordServiceImpl">
+    <property name="dao" ref="ikm070unitRecordDao"/>
+  </bean>
+  <bean id="km070unitTestService"
+    class="org.loyer.komoo.service.impl.Km070unitTestServiceImpl">
+    <property name="dao" ref="ikm070unitTestDao"/>
+  </bean>
+  <!-- productType -->
+  <bean id="productType" class="org.loyer.komoo.service.impl.ProductTypeServiceImpl">
+    <property name="dao" ref="IProductTypeDao" />
+  </bean>
+  <!-- user -->
+  <bean id="user" class="org.loyer.komoo.service.impl.UserServiceImpl">
+    <property name="dao" ref="IUserDao" />
+  </bean>
 
 </beans>
