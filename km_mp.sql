@@ -11,7 +11,7 @@
  Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 07/09/2019 14:00:57
+ Date: 18/09/2019 11:37:34
 */
 
 SET NAMES utf8mb4;
@@ -24,263 +24,99 @@ DROP TABLE IF EXISTS `km030smt`;
 CREATE TABLE `km030smt`  (
   `step` int(11) NOT NULL AUTO_INCREMENT,
   `items` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `upper` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `lower` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `upper` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `lower` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `unit` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `result` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`step`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 247 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 82 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of km030smt
 -- ----------------------------
-INSERT INTO `km030smt` VALUES (1, 'CN5-1/2电压', '240', '210', '?', 'ACV', '?');
-INSERT INTO `km030smt` VALUES (2, 'CN3-2电压', '1', '0', '?', 'ACV', '?');
-INSERT INTO `km030smt` VALUES (3, 'WA置位CN3-2电压', '240', '210', '?', 'ACV', '?');
-INSERT INTO `km030smt` VALUES (4, 'SEAT_L-SEAT_N电压', '1', '0', '?', 'ACV', '?');
-INSERT INTO `km030smt` VALUES (5, 'SEAT置位SEAT_L-SEAT_N电压', '240', '210', '?', 'ACV', '?');
-INSERT INTO `km030smt` VALUES (6, 'CN14-1/2电压', '1', '0', '?', 'ACV', '?');
-INSERT INTO `km030smt` VALUES (7, 'DRY置位CN14-1/2电压', '240', '210', '?', 'ACV', '?');
-INSERT INTO `km030smt` VALUES (8, 'CN2-5电压', '12.5', '11.5', '?', 'DCV', '?');
-INSERT INTO `km030smt` VALUES (9, 'CN2-5电流', '1.4', '1.18', '?', 'DCA', '?');
-INSERT INTO `km030smt` VALUES (10, 'CN2-2电压', '5.2', '4.5', '?', 'DCV', '?');
-INSERT INTO `km030smt` VALUES (11, 'CN2-2电流', '1.8', '1.5', '?', 'DCA', '?');
-INSERT INTO `km030smt` VALUES (12, 'CN8-1(端子12V)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (13, 'CN9-1(端子12V)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (14, 'CN11-1(端子12V)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (15, 'CN18-1(端子12V)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (16, 'CN19-1(端子12V)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (17, 'CN10-1(端子12V)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (18, 'CN15-1(端子12V)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (19, 'CN12-2(端子5V)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (20, 'CN13-1(端子5V)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (21, 'CN13-1(端子5V)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (22, 'CN17-4(端子5V)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (23, 'CN6-1(端子5V)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (24, 'CN1-2(GND)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (25, 'CN2-6(GND)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (26, 'CN7-3/4(GND)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (27, 'CN12-1(GND)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (28, 'CN13-3(GND)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (29, 'CN16-2(GND)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (30, 'CN20-2(GND)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (31, 'CN17-1(GND)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (32, 'CN6-6(GND)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (33, 'CN15-2(Wstep-1置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (34, 'CN15-3(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (35, 'CN15-4(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (36, 'CN15-5(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (37, 'CN10-2(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (38, 'CN10-3(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (39, 'CN10-4(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (40, 'CN10-5(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (41, 'CN9-2(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (42, 'CN11-3(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (43, 'CN19-2(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (44, 'CN8-2(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (45, 'CN17-2(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (46, 'CN18-2(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (47, 'CN15-2(Wstep-2置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (48, 'CN15-3(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (49, 'CN15-4(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (50, 'CN15-5(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (51, 'CN10-2(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (52, 'CN10-3(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (53, 'CN10-4(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (54, 'CN10-5(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (55, 'CN9-2(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (56, 'CN11-3(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (57, 'CN19-2(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (58, 'CN8-2(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (59, 'CN17-2(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (60, 'CN18-2(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (61, 'CN15-2(Wstep-3置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (62, 'CN15-3(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (63, 'CN15-4(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (64, 'CN15-5(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (65, 'CN10-2(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (66, 'CN10-3(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (67, 'CN10-4(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (68, 'CN10-5(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (69, 'CN9-2(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (70, 'CN11-3(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (71, 'CN19-2(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (72, 'CN8-2(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (73, 'CN15-2(Wstep-4置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (74, 'CN15-3(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (75, 'CN15-4(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (76, 'CN15-5(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (77, 'CN10-2(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (78, 'CN10-3(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (79, 'CN10-4(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (80, 'CN10-5(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (81, 'CN9-2(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (82, 'CN11-3(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (83, 'CN19-2(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (84, 'CN8-2(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (85, 'CN17-2(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (86, 'CN18-2(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (87, 'CN15-2(Wnozzle-1置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (88, 'CN15-3(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (89, 'CN15-4(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (90, 'CN15-5(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (91, 'CN10-2(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (92, 'CN10-3(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (93, 'CN10-4(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (94, 'CN10-5(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (95, 'CN9-2(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (96, 'CN11-3(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (97, 'CN19-2(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (98, 'CN8-2(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (99, 'CN17-2(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (100, 'CN18-2(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (101, 'CN15-2(Wnozzle-2置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (102, 'CN15-3(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (103, 'CN15-4(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (104, 'CN15-5(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (105, 'CN10-2(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (106, 'CN10-3(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (107, 'CN10-4(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (108, 'CN10-5(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (109, 'CN9-2(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (110, 'CN11-3(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (111, 'CN19-2(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (112, 'CN8-2(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (113, 'CN17-2(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (114, 'CN18-2(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (115, 'CN15-2(Wnozzle-3置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (116, 'CN15-3(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (117, 'CN15-4(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (118, 'CN15-5(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (119, 'CN10-2(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (120, 'CN10-3(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (121, 'CN10-4(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (122, 'CN10-5(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (123, 'CN9-2(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (124, 'CN11-3(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (125, 'CN19-2(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (126, 'CN8-2(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (127, 'CN17-2(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (128, 'CN18-2(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (129, 'CN15-2(Wnozzle-4置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (130, 'CN15-3(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (131, 'CN15-4(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (132, 'CN15-5(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (133, 'CN10-2(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (134, 'CN10-3(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (135, 'CN10-4(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (136, 'CN10-5(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (137, 'CN9-2(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (138, 'CN11-3(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (139, 'CN19-2(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (140, 'CN8-2(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (141, 'CN17-2(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (142, 'CN18-2(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (143, 'CN15-2(DryMot置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (144, 'CN15-3(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (145, 'CN15-4(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (146, 'CN15-5(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (147, 'CN10-2(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (148, 'CN10-3(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (149, 'CN10-4(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (150, 'CN10-5(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (151, 'CN9-2(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (152, 'CN11-3(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (153, 'CN19-2(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (154, 'CN8-2(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (155, 'CN17-2(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (156, 'CN18-2(DryMot置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (157, 'CN15-2(Wpump置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (158, 'CN15-3(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (159, 'CN15-4(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (160, 'CN15-5(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (161, 'CN10-2(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (162, 'CN10-3(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (163, 'CN10-4(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (164, 'CN10-5(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (165, 'CN9-2(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (166, 'CN11-3(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (167, 'CN19-2(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (168, 'CN8-2(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (169, 'CN17-2(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (170, 'CN18-2(Wpump置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (171, 'CN15-2(DEMOT置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (172, 'CN15-3(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (173, 'CN15-4(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (174, 'CN15-5(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (175, 'CN10-2(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (176, 'CN10-3(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (177, 'CN10-4(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (178, 'CN10-5(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (179, 'CN9-2(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (180, 'CN11-3(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (181, 'CN19-2(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (182, 'CN8-2(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (183, 'CN17-2(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (184, 'CN18-2(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (185, 'CN15-2(Wvalue置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (186, 'CN15-3(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (187, 'CN15-4(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (188, 'CN15-5(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (189, 'CN10-2(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (190, 'CN10-3(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (191, 'CN10-4(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (192, 'CN10-5(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (193, 'CN9-2(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (194, 'CN11-3(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (195, 'CN19-2(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (196, 'CN8-2(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (197, 'CN17-2(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (198, 'CN18-2(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (199, 'CN15-2(ModeLED置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (200, 'CN15-3(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (201, 'CN15-4(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (202, 'CN15-5(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (203, 'CN10-2(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (204, 'CN10-3(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (205, 'CN10-4(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (206, 'CN10-5(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (207, 'CN9-2(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (208, 'CN11-3(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (209, 'CN19-2(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (210, 'CN8-2(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (211, 'CN17-2(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (212, 'CN18-2(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (213, 'CN15-2(UV_Light置位)', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (214, 'CN15-3(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (215, 'CN15-4(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (216, 'CN15-5(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (217, 'CN10-2(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (218, 'CN10-3(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (219, 'CN10-4(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (220, 'CN10-5(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (221, 'CN9-2(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (222, 'CN11-3(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (223, 'CN19-2(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (224, 'CN8-2(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (225, 'CN17-2(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (226, 'CN18-2(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (227, 'CN13-2(WF(INT)检测)-01', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (228, 'CN12-3(Seats检测)-01', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (229, 'OVERZERO过零检测-01', '1', '1', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (230, 'CN7-1(WTO-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (231, 'CN7-6(WTI-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (232, 'AC-CHECK(ADC电压检测)-01', '3FF', '3E8', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (233, 'CN16-1(DRYT-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (234, 'CN1-1(SEATT1-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (235, 'CN17-3(LIGHT-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (236, 'CN20-1(ENVER-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (237, 'CN13-2(WF(INT)检测)-02', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (238, 'CN12-3(Seats检测)-02', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (239, 'OVERZERO过零检测-02', '0', '0', '?', 'BYTE', '?');
-INSERT INTO `km030smt` VALUES (240, 'CN7-1(WTO-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (241, 'CN7-6(WTI-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (242, 'AC-CHECK(ADC电压检测)-02', 'C8', '0', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (243, 'CN16-1(DRYT-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (244, 'CN1-1(SEATT1-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (245, 'CN17-3(LIGHT-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
-INSERT INTO `km030smt` VALUES (246, 'CN20-1(ENVER-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
+INSERT INTO `km030smt` VALUES (1, '供电电源电压', '200', '200', '?', 'ACV', '?');
+INSERT INTO `km030smt` VALUES (2, 'CN5-1/2电压', '230', '210', '?', 'ACV', '?');
+INSERT INTO `km030smt` VALUES (3, 'WA置位CN3-2电压', '230', '210', '?', 'ACV', '?');
+INSERT INTO `km030smt` VALUES (4, 'SEAT置位SEAT_L-SEAT_N电压', '230', '210', '?', 'ACV', '?');
+INSERT INTO `km030smt` VALUES (5, 'DRY置位CN14-1/2电压', '230', '210', '?', 'ACV', '?');
+INSERT INTO `km030smt` VALUES (6, 'CN11-1电压', '12.5', '11.5', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (7, 'CN2-5电流', '0.52', '0.475', '?', 'DCA', '?');
+INSERT INTO `km030smt` VALUES (8, 'CN2-2电流', '0.52', '0.475', '?', 'DCA', '?');
+INSERT INTO `km030smt` VALUES (9, 'CN8-1(端子12V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (10, 'CN9-1(端子12V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (11, 'CN18-1(端子12V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (12, 'CN19-1(端子12V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (13, 'CN10-1(端子12V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (14, 'CN15-1(端子12V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (15, 'CN12-2(端子5V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (16, 'CN13-1(端子5V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (17, 'CN13-1(端子5V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (18, 'CN17-4(端子5V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (19, 'CN6-1(端子5V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (20, 'CN1-2(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (21, 'CN2-6(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (22, 'CN7-3/4(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (23, 'CN12-1(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (24, 'CN13-3(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (25, 'CN16-2(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (26, 'CN20-2(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (27, 'CN17-1(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (28, 'CN6-6(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (29, 'CN15-2(Wstep-1置位)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (30, 'CN15-3(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (31, 'CN15-4(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (32, 'CN15-5(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (33, 'CN15-2(Wstep-2置位)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (34, 'CN15-3(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (35, 'CN15-4(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (36, 'CN15-5(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (37, 'CN15-2(Wstep-3置位)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (38, 'CN15-3(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (39, 'CN15-4(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (40, 'CN15-5(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (41, 'CN15-2(Wstep-4置位)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (42, 'CN15-3(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (43, 'CN15-4(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (44, 'CN15-5(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (45, 'CN10-2(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (46, 'CN10-3(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (47, 'CN10-4(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (48, 'CN10-5(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (49, 'CN10-2(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (50, 'CN10-3(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (51, 'CN10-4(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (52, 'CN10-5(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (53, 'CN10-2(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (54, 'CN10-3(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (55, 'CN10-4(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (56, 'CN10-5(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (57, 'CN10-2(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (58, 'CN10-3(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (59, 'CN10-4(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (60, 'CN10-5(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (61, 'CN9-2(DryMot置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (62, 'CN11-3(Wpump置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (63, 'CN19-2(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (64, 'CN8-2(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (65, 'CN17-2(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (66, 'CN18-2(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (67, 'CN13-2(WF(INT)检测)-01', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (68, 'CN12-3(Seats检测)-01', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (69, 'CN7-1(WTO-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
+INSERT INTO `km030smt` VALUES (70, 'CN7-6(WTI-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
+INSERT INTO `km030smt` VALUES (71, 'CN16-1(DRYT-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
+INSERT INTO `km030smt` VALUES (72, 'CN1-1(SEATT1-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
+INSERT INTO `km030smt` VALUES (73, 'CN17-3(LIGHT-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
+INSERT INTO `km030smt` VALUES (74, 'CN20-1(ENVER-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
+INSERT INTO `km030smt` VALUES (75, 'CN13-2(WF(INT)检测)-02', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (76, 'CN12-3(Seats检测)-02', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030smt` VALUES (77, 'CN7-1(WTO-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
+INSERT INTO `km030smt` VALUES (78, 'CN7-6(WTI-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
+INSERT INTO `km030smt` VALUES (79, 'CN16-1(DRYT-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
+INSERT INTO `km030smt` VALUES (80, 'CN1-1(SEATT1-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
+INSERT INTO `km030smt` VALUES (81, 'CN17-3(LIGHT-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
+INSERT INTO `km030smt` VALUES (82, 'CN20-1(ENVER-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
 
 -- ----------------------------
 -- Table structure for km030smt_record
@@ -295,7 +131,14 @@ CREATE TABLE `km030smt_record`  (
   `seconds` double NULL DEFAULT NULL,
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of km030smt_record
+-- ----------------------------
+INSERT INTO `km030smt_record` VALUES (9, 'KM030PWR-MAIN-SMT', 2, 0, 2, 2.74, '2019-09-11');
+INSERT INTO `km030smt_record` VALUES (10, 'KM030PWR-MAIN-SMT', 4, 0, 4, 1.72, '2019-09-12');
+INSERT INTO `km030smt_record` VALUES (11, 'KM030PWR-MAIN-SMT', 7, 0, 7, 1.6, '2019-09-16');
 
 -- ----------------------------
 -- Table structure for km030smt_testdata
@@ -315,7 +158,27 @@ CREATE TABLE `km030smt_testdata`  (
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of km030smt_testdata
+-- ----------------------------
+INSERT INTO `km030smt_testdata` VALUES (2, '868686856', 1, '供电电源电压', '210', '210', '223.0', 'ACV', 'NG', '17:35:13', '2019-09-11', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (3, '56356856856', 1, '供电电源电压', '210', '210', '222.0', 'ACV', 'NG', '17:37:02', '2019-09-11', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (4, '844494499', 1, '供电电源电压', '210', '210', '223.0', 'ACV', 'NG', '17:38:53', '2019-09-11', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (5, '4485454545', 1, '供电电源电压', '210', '210', '223.0', 'ACV', 'NG', '17:41:17', '2019-09-11', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (6, '4485454545', 82, 'CN20-1(ENVER-ADC检测)-02', 'C8', '0', '?', 'ADC', '?', '17:41:17', '2019-09-11', '测试PASS');
+INSERT INTO `km030smt_testdata` VALUES (7, '5665656+565', 1, '供电电源电压', '210', '210', '216.0', 'ACV', 'NG', '15:37:52', '2019-09-12', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (8, '897898989', 1, '供电电源电压', '210', '210', '219.0', 'ACV', 'NG', '16:03:28', '2019-09-12', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (9, '845484864856', 1, '供电电源电压', '210', '210', '218.0', 'ACV', 'NG', '16:11:04', '2019-09-12', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (10, '8568568566585', 1, '供电电源电压', '210', '210', '219.0', 'ACV', 'NG', '16:44:14', '2019-09-12', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (11, '4848478748748', 1, '供电电源电压', '200', '200', '210.0', 'ACV', 'NG', '10:33:14', '2019-09-16', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (12, '8686987685685785', 1, '供电电源电压', '200', '200', '211.0', 'ACV', 'NG', '10:41:55', '2019-09-16', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (13, '56565464', 1, '供电电源电压', '200', '200', '210.0', 'ACV', 'NG', '10:45:18', '2019-09-16', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (14, '8745628745', 1, '供电电源电压', '200', '200', '210.0', 'ACV', 'NG', '10:52:07', '2019-09-16', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (15, '8676787986', 1, '供电电源电压', '200', '200', '209.0', 'ACV', 'NG', '11:06:27', '2019-09-16', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (16, '79897979798789', 1, '供电电源电压', '200', '200', '210.0', 'ACV', 'NG', '11:20:34', '2019-09-16', '测试NG');
+INSERT INTO `km030smt_testdata` VALUES (17, '79897979798789', 1, '供电电源电压', '200', '200', '213.0', 'ACV', 'NG', '12:58:07', '2019-09-16', '测试NG');
 
 -- ----------------------------
 -- Table structure for km030unit
@@ -330,7 +193,93 @@ CREATE TABLE `km030unit`  (
   `unit` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `result` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`step`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 82 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of km030unit
+-- ----------------------------
+INSERT INTO `km030unit` VALUES (1, '供电电源电压', '230', '210', '?', 'ACV', '?');
+INSERT INTO `km030unit` VALUES (2, 'CN5-1/2电压', '230', '210', '?', 'ACV', '?');
+INSERT INTO `km030unit` VALUES (3, 'WA置位CN3-2电压', '230', '210', '?', 'ACV', '?');
+INSERT INTO `km030unit` VALUES (4, 'SEAT置位SEAT_L-SEAT_N电压', '230', '210', '?', 'ACV', '?');
+INSERT INTO `km030unit` VALUES (5, 'DRY置位CN14-1/2电压', '230', '210', '?', 'ACV', '?');
+INSERT INTO `km030unit` VALUES (6, 'CN11-1电压', '12.5', '11.5', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (7, 'CN2-5电流', '0.52', '0.475', '?', 'DCA', '?');
+INSERT INTO `km030unit` VALUES (8, 'CN2-2电流', '0.52', '0.475', '?', 'DCA', '?');
+INSERT INTO `km030unit` VALUES (9, 'CN8-1(端子12V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (10, 'CN9-1(端子12V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (11, 'CN18-1(端子12V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (12, 'CN19-1(端子12V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (13, 'CN10-1(端子12V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (14, 'CN15-1(端子12V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (15, 'CN12-2(端子5V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (16, 'CN13-1(端子5V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (17, 'CN13-1(端子5V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (18, 'CN17-4(端子5V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (19, 'CN6-1(端子5V)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (20, 'CN1-2(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (21, 'CN2-6(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (22, 'CN7-3/4(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (23, 'CN12-1(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (24, 'CN13-3(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (25, 'CN16-2(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (26, 'CN20-2(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (27, 'CN17-1(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (28, 'CN6-6(GND)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (29, 'CN15-2(Wstep-1置位)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (30, 'CN15-3(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (31, 'CN15-4(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (32, 'CN15-5(Wstep-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (33, 'CN15-2(Wstep-2置位)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (34, 'CN15-3(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (35, 'CN15-4(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (36, 'CN15-5(Wstep-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (37, 'CN15-2(Wstep-3置位)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (38, 'CN15-3(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (39, 'CN15-4(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (40, 'CN15-5(Wstep-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (41, 'CN15-2(Wstep-4置位)', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (42, 'CN15-3(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (43, 'CN15-4(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (44, 'CN15-5(Wstep-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (45, 'CN10-2(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (46, 'CN10-3(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (47, 'CN10-4(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (48, 'CN10-5(Wnozzle-1置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (49, 'CN10-2(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (50, 'CN10-3(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (51, 'CN10-4(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (52, 'CN10-5(Wnozzle-2置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (53, 'CN10-2(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (54, 'CN10-3(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (55, 'CN10-4(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (56, 'CN10-5(Wnozzle-3置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (57, 'CN10-2(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (58, 'CN10-3(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (59, 'CN10-4(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (60, 'CN10-5(Wnozzle-4置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (61, 'CN9-2(DryMot置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (62, 'CN11-3(Wpump置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (63, 'CN19-2(DEMOT置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (64, 'CN8-2(Wvalue置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (65, 'CN17-2(ModeLED置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (66, 'CN18-2(UV_Light置位)', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (67, 'CN13-2(WF(INT)检测)-01', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (68, 'CN12-3(Seats检测)-01', '1', '1', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (69, 'CN7-1(WTO-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
+INSERT INTO `km030unit` VALUES (70, 'CN7-6(WTI-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
+INSERT INTO `km030unit` VALUES (71, 'CN16-1(DRYT-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
+INSERT INTO `km030unit` VALUES (72, 'CN1-1(SEATT1-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
+INSERT INTO `km030unit` VALUES (73, 'CN17-3(LIGHT-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
+INSERT INTO `km030unit` VALUES (74, 'CN20-1(ENVER-ADC检测)-01', '3FF', '3E8', '?', 'ADC', '?');
+INSERT INTO `km030unit` VALUES (75, 'CN13-2(WF(INT)检测)-02', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (76, 'CN12-3(Seats检测)-02', '0', '0', '?', 'BYTE', '?');
+INSERT INTO `km030unit` VALUES (77, 'CN7-1(WTO-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
+INSERT INTO `km030unit` VALUES (78, 'CN7-6(WTI-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
+INSERT INTO `km030unit` VALUES (79, 'CN16-1(DRYT-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
+INSERT INTO `km030unit` VALUES (80, 'CN1-1(SEATT1-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
+INSERT INTO `km030unit` VALUES (81, 'CN17-3(LIGHT-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
+INSERT INTO `km030unit` VALUES (82, 'CN20-1(ENVER-ADC检测)-02', 'C8', '0', '?', 'ADC', '?');
 
 -- ----------------------------
 -- Table structure for km030unit_record
@@ -345,7 +294,7 @@ CREATE TABLE `km030unit_record`  (
   `seconds` double NULL DEFAULT NULL,
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for km030unit_testdata
@@ -365,7 +314,7 @@ CREATE TABLE `km030unit_testdata`  (
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for km033smt_record
@@ -3028,7 +2977,7 @@ CREATE TABLE `km036smt`  (
   `unit` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `result` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`step`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of km036smt
@@ -3099,7 +3048,7 @@ CREATE TABLE `km036smt_record`  (
   `seconds` double NULL DEFAULT NULL,
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for km036smt_testdata
@@ -3119,7 +3068,21 @@ CREATE TABLE `km036smt_testdata`  (
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of km036smt_testdata
+-- ----------------------------
+INSERT INTO `km036smt_testdata` VALUES (1, 'fdfddf', 1, '', '', '', '', '', '', '', '', '');
+INSERT INTO `km036smt_testdata` VALUES (2, 'fdfddf', 2, '', '', '', '', '', '', '', '', '');
+INSERT INTO `km036smt_testdata` VALUES (3, 'fdfddf', 3, '', '', '', '', '', '', '', '', '');
+INSERT INTO `km036smt_testdata` VALUES (4, 'fdfddf', 4, '', '', '', '', '', '', '', '', '');
+INSERT INTO `km036smt_testdata` VALUES (5, 'fdfddf', 5, '', '', '', '', '', '', '', '', '');
+INSERT INTO `km036smt_testdata` VALUES (6, 'fdfddf', 6, '', '', '', '', '', '', '', '', '');
+INSERT INTO `km036smt_testdata` VALUES (7, 'fdfddf', 7, '', '', '', '', '', '', '', '', '');
+INSERT INTO `km036smt_testdata` VALUES (8, 'fdfddf', 8, '', '', '', '', '', '', '', '', '');
+INSERT INTO `km036smt_testdata` VALUES (9, 'fdfddf', 9, '', '', '', '', '', '', '', '', '');
+INSERT INTO `km036smt_testdata` VALUES (10, 'fdfddf', 10, '', '', '', '', '', '', '', '', '');
 
 -- ----------------------------
 -- Table structure for km036unit
@@ -3134,7 +3097,7 @@ CREATE TABLE `km036unit`  (
   `unit` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `result` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`step`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of km036unit
@@ -3205,7 +3168,7 @@ CREATE TABLE `km036unit_record`  (
   `seconds` double NULL DEFAULT NULL,
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for km036unit_testdata
@@ -3225,7 +3188,7 @@ CREATE TABLE `km036unit_testdata`  (
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for km047smt
@@ -3240,7 +3203,7 @@ CREATE TABLE `km047smt`  (
   `unit` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `result` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`step`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 129 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 128 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of km047smt
@@ -3387,7 +3350,7 @@ CREATE TABLE `km047smt_record`  (
   `seconds` double NULL DEFAULT NULL,
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for km047smt_testdata
@@ -3407,7 +3370,7 @@ CREATE TABLE `km047smt_testdata`  (
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for km047unit
@@ -3422,7 +3385,7 @@ CREATE TABLE `km047unit`  (
   `unit` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `result` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`step`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 129 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 128 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of km047unit
@@ -3569,7 +3532,7 @@ CREATE TABLE `km047unit_record`  (
   `seconds` double NULL DEFAULT NULL,
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of km047unit_record
@@ -3596,7 +3559,7 @@ CREATE TABLE `km047unit_testdata`  (
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 292 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 291 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of km047unit_testdata
@@ -3926,7 +3889,7 @@ CREATE TABLE `km070unit_record`  (
   `seconds` double NULL DEFAULT NULL,
   `date` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for km070unit_testdata
@@ -3956,7 +3919,7 @@ CREATE TABLE `product_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of product_type
@@ -3983,7 +3946,7 @@ CREATE TABLE `user_man`  (
   `username` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `password` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_man
