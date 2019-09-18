@@ -6,9 +6,13 @@ import java.util.List;
 import org.loyer.komoo.beans.TestData;
 import org.loyer.komoo.dao.Ikm030smtTestDao;
 import org.loyer.komoo.service.ITestDataService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class Km030smtTestServiceImpl implements ITestDataService {
 
+  @Autowired
   private Ikm030smtTestDao dao;
   
   public void setDao(Ikm030smtTestDao dao) {

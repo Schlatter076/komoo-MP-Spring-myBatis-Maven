@@ -91,12 +91,12 @@ public class KM036Client extends LoyerFrame {
   /**
    * 获取测试数据主页面
    */
-  public static void getDataView(ApplicationContext ac, String type, String recordBeanId, String testBeanId) {
+  public static void getDataView(ApplicationContext ac, String type, String base) {
     EventQueue.invokeLater(new Runnable() {
 
       @Override
       public void run() {
-        KM036Client win = new KM036Client(ac, type, recordBeanId, testBeanId);
+        KM036Client win = new KM036Client(ac, type, base);
         win.frame.setVisible(true);
         win.setTableCellRenderer();
         win.initLoad();
@@ -104,21 +104,21 @@ public class KM036Client extends LoyerFrame {
     });
   }
 
-  public KM036Client(ApplicationContext ac, String type, String recordBeanId, String testBeanId) {
+  public KM036Client(ApplicationContext ac, String type, String base) {
 
     this.context = ac; //获取Spring上下文对象
-    recordService = (IRecordDataService) context.getBean(recordBeanId);
-    testService = (ITestDataService) context.getBean(testBeanId);
+    recordService = (IRecordDataService) context.getBean(base + "RecordServiceImpl");
+    testService = (ITestDataService) context.getBean(base + "TestServiceImpl");
     
     PRODUCT_NAME = type;
     logger.info("启动::" + PRODUCT_NAME);
     productField.setText(PRODUCT_NAME + "测试系统");
     date = LocalDate.now().toString();
 
-    IUserService ius = (IUserService) context.getBean("user");
+    IUserService ius = (IUserService) context.getBean("userServiceImpl");
     admin = ius.getUserById(1);
 
-    IViewDataService viewService = (IViewDataService) context.getBean("");
+    IViewDataService viewService = (IViewDataService) context.getBean(base + "ServiceImpl");
     List<ViewData> views = viewService.getAll();
     
     if (views != null) {

@@ -5,9 +5,13 @@ import java.util.List;
 import org.loyer.komoo.beans.RecordData;
 import org.loyer.komoo.dao.Ikm033unitRecordDao;
 import org.loyer.komoo.service.IRecordDataService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class Km033unitRecordServiceImpl implements IRecordDataService {
 
+  @Autowired
   private Ikm033unitRecordDao dao;
   
   public void setDao(Ikm033unitRecordDao dao) {

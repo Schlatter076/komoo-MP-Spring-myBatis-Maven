@@ -19,7 +19,7 @@ public class LogIn extends LogInFrame {
   public LogIn() {
     
     context = new ClassPathXmlApplicationContext("application.xml");
-    ProductTypeServiceImpl pts = (ProductTypeServiceImpl) context.getBean("productType");
+    ProductTypeServiceImpl pts = (ProductTypeServiceImpl) context.getBean("productTypeServiceImpl");
     List<ProductType> list = pts.getAllTypes();
     for(ProductType tp : list) {
       typeBox.addItem(tp.getType());
@@ -37,9 +37,9 @@ public class LogIn extends LogInFrame {
         isDataView = true;
         frame.dispose();
         if(type.toLowerCase().contains("smt")) {
-          KM036Client.getDataView(context, type, "km036smtRecordService", "km036smtTestService");
+          KM036Client.getDataView(context, type, "km036smt");
         } else if(type.toLowerCase().contains("unit")) {
-          KM036Client.getDataView(context, type, "km036unitRecordService", "km036unitTestService");
+          KM036Client.getDataView(context, type, "km036unit");
         }
       } 
       else {
