@@ -1,85 +1,123 @@
-[DEBUG][2019-09-18 14:41:01][org.loyer.komoo.dao.IUserDao.selectUserById]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4b520ea8 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@16150369]]
-[DEBUG][2019-09-18 14:41:01][org.loyer.komoo.dao.IUserDao.selectUserById]- ==>  Preparing: SELECT id,username,password FROM user_man where id=? 
-[DEBUG][2019-09-18 14:41:01][org.loyer.komoo.dao.IUserDao.selectUserById]- ==> Parameters: 1(Integer)
-[DEBUG][2019-09-18 14:41:16][org.loyer.komoo.dao.Ikm034smtDao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1c742ed4 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@333d4a8c]]
-[DEBUG][2019-09-18 14:41:16][org.loyer.komoo.dao.Ikm034smtDao.selectAll]- ==>  Preparing: SELECT step,items,upper,lower,value,unit,result FROM km034smt 
-[DEBUG][2019-09-18 14:41:16][org.loyer.komoo.dao.Ikm034smtDao.selectAll]- ==> Parameters: 
-[DEBUG][2019-09-18 14:41:37][org.loyer.komoo.dao.Ikm030smtDao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1c742ed4 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@333d4a8c]]
-[DEBUG][2019-09-18 14:41:37][org.loyer.komoo.dao.Ikm030smtDao.selectAll]- ==>  Preparing: SELECT step,items,upper,lower,value,unit,result FROM km030smt 
-[DEBUG][2019-09-18 14:41:37][org.loyer.komoo.dao.Ikm030smtDao.selectAll]- ==> Parameters: 
-[DEBUG][2019-09-18 14:41:44][org.loyer.komoo.dao.Ikm036smtDao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1c742ed4 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@333d4a8c]]
-[DEBUG][2019-09-18 14:41:44][org.loyer.komoo.dao.Ikm036smtDao.selectAll]- ==>  Preparing: SELECT step,items,upper,lower,value,unit,result FROM km036smt 
-[DEBUG][2019-09-18 14:41:44][org.loyer.komoo.dao.Ikm036smtDao.selectAll]- ==> Parameters: 
-[DEBUG][2019-09-18 14:43:50][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@60f00693 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@79207381]]
-[DEBUG][2019-09-18 14:43:50][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==>  Preparing: INSERT INTO km036smt_testdata(product_num,step,items,upper,lower,value,unit,result,times,date,remark) VALUES(?,?,?,?,?,?,?,?,?,?,?) 
-[DEBUG][2019-09-18 14:43:50][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==> Parameters: fdfddf(String), 1(Integer), (String), (String), (String), (String), (String), (String), (String), (String), (String)
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@2254127a [wrapping: com.mysql.cj.jdbc.ConnectionImpl@79207381]]
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==>  Preparing: INSERT INTO km036smt_testdata(product_num,step,items,upper,lower,value,unit,result,times,date,remark) VALUES(?,?,?,?,?,?,?,?,?,?,?) 
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==> Parameters: fdfddf(String), 2(Integer), (String), (String), (String), (String), (String), (String), (String), (String), (String)
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@5a7fe64f [wrapping: com.mysql.cj.jdbc.ConnectionImpl@79207381]]
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==>  Preparing: INSERT INTO km036smt_testdata(product_num,step,items,upper,lower,value,unit,result,times,date,remark) VALUES(?,?,?,?,?,?,?,?,?,?,?) 
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==> Parameters: fdfddf(String), 3(Integer), (String), (String), (String), (String), (String), (String), (String), (String), (String)
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@7dc19a70 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@79207381]]
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==>  Preparing: INSERT INTO km036smt_testdata(product_num,step,items,upper,lower,value,unit,result,times,date,remark) VALUES(?,?,?,?,?,?,?,?,?,?,?) 
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==> Parameters: fdfddf(String), 4(Integer), (String), (String), (String), (String), (String), (String), (String), (String), (String)
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1df8da7a [wrapping: com.mysql.cj.jdbc.ConnectionImpl@79207381]]
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==>  Preparing: INSERT INTO km036smt_testdata(product_num,step,items,upper,lower,value,unit,result,times,date,remark) VALUES(?,?,?,?,?,?,?,?,?,?,?) 
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==> Parameters: fdfddf(String), 5(Integer), (String), (String), (String), (String), (String), (String), (String), (String), (String)
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1f9f6368 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@79207381]]
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==>  Preparing: INSERT INTO km036smt_testdata(product_num,step,items,upper,lower,value,unit,result,times,date,remark) VALUES(?,?,?,?,?,?,?,?,?,?,?) 
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==> Parameters: fdfddf(String), 6(Integer), (String), (String), (String), (String), (String), (String), (String), (String), (String)
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@6e2aa843 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@79207381]]
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==>  Preparing: INSERT INTO km036smt_testdata(product_num,step,items,upper,lower,value,unit,result,times,date,remark) VALUES(?,?,?,?,?,?,?,?,?,?,?) 
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==> Parameters: fdfddf(String), 7(Integer), (String), (String), (String), (String), (String), (String), (String), (String), (String)
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3b35a229 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@79207381]]
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==>  Preparing: INSERT INTO km036smt_testdata(product_num,step,items,upper,lower,value,unit,result,times,date,remark) VALUES(?,?,?,?,?,?,?,?,?,?,?) 
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==> Parameters: fdfddf(String), 8(Integer), (String), (String), (String), (String), (String), (String), (String), (String), (String)
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@2f67a4d3 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@79207381]]
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==>  Preparing: INSERT INTO km036smt_testdata(product_num,step,items,upper,lower,value,unit,result,times,date,remark) VALUES(?,?,?,?,?,?,?,?,?,?,?) 
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==> Parameters: fdfddf(String), 9(Integer), (String), (String), (String), (String), (String), (String), (String), (String), (String)
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@6d5620ce [wrapping: com.mysql.cj.jdbc.ConnectionImpl@79207381]]
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==>  Preparing: INSERT INTO km036smt_testdata(product_num,step,items,upper,lower,value,unit,result,times,date,remark) VALUES(?,?,?,?,?,?,?,?,?,?,?) 
-[DEBUG][2019-09-18 14:43:51][org.loyer.komoo.dao.Ikm036smtTestDao.insertOne]- ==> Parameters: fdfddf(String), 10(Integer), (String), (String), (String), (String), (String), (String), (String), (String), (String)
-[DEBUG][2019-09-18 14:45:48][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@6dc8fc08 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7b842525]]
-[DEBUG][2019-09-18 14:45:48][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
-[DEBUG][2019-09-18 14:45:48][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
-[INFO ][2019-09-18 14:46:03][org.loyer.komoo.client.KM036Client]- 启动::KM036PWR-MAIN-SMT
-[DEBUG][2019-09-18 14:47:21][org.loyer.komoo.dao.IUserDao.selectUserById]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4b520ea8 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@16150369]]
-[DEBUG][2019-09-18 14:47:21][org.loyer.komoo.dao.IUserDao.selectUserById]- ==>  Preparing: SELECT id,username,password FROM user_man where id=? 
-[DEBUG][2019-09-18 14:47:21][org.loyer.komoo.dao.IUserDao.selectUserById]- ==> Parameters: 1(Integer)
-[DEBUG][2019-09-18 14:47:38][org.loyer.komoo.dao.IUserDao.selectUserById]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4b520ea8 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@16150369]]
-[DEBUG][2019-09-18 14:47:38][org.loyer.komoo.dao.IUserDao.selectUserById]- ==>  Preparing: SELECT id,username,password FROM user_man where id=? 
-[DEBUG][2019-09-18 14:47:38][org.loyer.komoo.dao.IUserDao.selectUserById]- ==> Parameters: 1(Integer)
-[DEBUG][2019-09-18 14:47:44][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@75713afd [wrapping: com.mysql.cj.jdbc.ConnectionImpl@294b7ada]]
-[DEBUG][2019-09-18 14:47:44][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
-[DEBUG][2019-09-18 14:47:44][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
-[INFO ][2019-09-18 14:47:49][org.loyer.komoo.client.KM036Client]- 启动::KM036PWR-MAIN-SMT
-[DEBUG][2019-09-18 14:47:49][org.loyer.komoo.dao.IUserDao.selectUserById]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@711527b0 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@294b7ada]]
-[DEBUG][2019-09-18 14:47:49][org.loyer.komoo.dao.IUserDao.selectUserById]- ==>  Preparing: SELECT id,username,password FROM user_man where id=? 
-[DEBUG][2019-09-18 14:47:49][org.loyer.komoo.dao.IUserDao.selectUserById]- ==> Parameters: 1(Integer)
-[DEBUG][2019-09-18 14:48:35][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@cc5e673 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@79b74c7f]]
-[DEBUG][2019-09-18 14:48:35][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
-[DEBUG][2019-09-18 14:48:35][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
-[INFO ][2019-09-18 14:48:39][org.loyer.komoo.client.KM036Client]- 启动::KM036PWR-MAIN-SMT
-[DEBUG][2019-09-18 14:48:39][org.loyer.komoo.dao.IUserDao.selectUserById]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@76f260bd [wrapping: com.mysql.cj.jdbc.ConnectionImpl@79b74c7f]]
-[DEBUG][2019-09-18 14:48:39][org.loyer.komoo.dao.IUserDao.selectUserById]- ==>  Preparing: SELECT id,username,password FROM user_man where id=? 
-[DEBUG][2019-09-18 14:48:39][org.loyer.komoo.dao.IUserDao.selectUserById]- ==> Parameters: 1(Integer)
-[DEBUG][2019-09-18 14:59:11][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@40206357 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@26f9a542]]
-[DEBUG][2019-09-18 14:59:11][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
-[DEBUG][2019-09-18 14:59:11][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
-[INFO ][2019-09-18 14:59:15][org.loyer.komoo.client.KM036Client]- 启动::KM036PWR-MAIN-SMT
-[DEBUG][2019-09-18 14:59:15][org.loyer.komoo.dao.IUserDao.selectUserById]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3f3c6b68 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@26f9a542]]
-[DEBUG][2019-09-18 14:59:15][org.loyer.komoo.dao.IUserDao.selectUserById]- ==>  Preparing: SELECT id,username,password FROM user_man where id=? 
-[DEBUG][2019-09-18 14:59:15][org.loyer.komoo.dao.IUserDao.selectUserById]- ==> Parameters: 1(Integer)
-[DEBUG][2019-09-18 14:59:15][org.loyer.komoo.dao.Ikm036smtDao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@35225036 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@26f9a542]]
-[DEBUG][2019-09-18 14:59:15][org.loyer.komoo.dao.Ikm036smtDao.selectAll]- ==>  Preparing: SELECT step,items,upper,lower,value,unit,result FROM km036smt 
-[DEBUG][2019-09-18 14:59:15][org.loyer.komoo.dao.Ikm036smtDao.selectAll]- ==> Parameters: 
-[DEBUG][2019-09-18 14:59:15][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@635f69d1 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@26f9a542]]
-[DEBUG][2019-09-18 14:59:15][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036smt_record WHERE date=? 
-[DEBUG][2019-09-18 14:59:15][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ==> Parameters: 2019-09-18(String)
-[DEBUG][2019-09-18 15:03:50][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@70d3072e [wrapping: com.mysql.cj.jdbc.ConnectionImpl@4c45597b]]
-[DEBUG][2019-09-18 15:03:50][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036smt_record 
-[DEBUG][2019-09-18 15:03:50][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ==> Parameters: 
-[DEBUG][2019-09-18 15:03:50][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@2c08411b [wrapping: com.mysql.cj.jdbc.ConnectionImpl@4c45597b]]
-[DEBUG][2019-09-18 15:03:50][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ==>  Preparing: SELECT id,product_num,step,items,upper,lower,value,unit,result,times,date,remark FROM km036smt_testdata WHERE date=? 
-[DEBUG][2019-09-18 15:03:50][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ==> Parameters: 2019-09-18(String)
+[DEBUG][2019-10-24 08:10:41][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@2c945e79 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@170c8367]]
+[DEBUG][2019-10-24 08:10:41][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
+[DEBUG][2019-10-24 08:10:41][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
+[DEBUG][2019-10-24 08:19:32][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@5a197dee [wrapping: com.mysql.cj.jdbc.ConnectionImpl@2403c07a]]
+[DEBUG][2019-10-24 08:19:32][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
+[DEBUG][2019-10-24 08:19:32][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
+[DEBUG][2019-10-24 08:48:38][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@5ef8de93 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@43b87b43]]
+[DEBUG][2019-10-24 08:48:38][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
+[DEBUG][2019-10-24 08:48:38][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
+[INFO ][2019-10-24 08:49:32][org.loyer.komoo.client.KM036Client]- 启动::KM036PWR-MAIN-SMT
+[DEBUG][2019-10-24 08:49:32][org.loyer.komoo.dao.IUserDao.selectUserById]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3a805d27 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@43b87b43]]
+[DEBUG][2019-10-24 08:49:32][org.loyer.komoo.dao.IUserDao.selectUserById]- ==>  Preparing: SELECT id,username,password FROM user_man where id=? 
+[DEBUG][2019-10-24 08:49:32][org.loyer.komoo.dao.IUserDao.selectUserById]- ==> Parameters: 1(Integer)
+[DEBUG][2019-10-24 08:49:32][org.loyer.komoo.dao.Ikm036smtDao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@21e5b86f [wrapping: com.mysql.cj.jdbc.ConnectionImpl@43b87b43]]
+[DEBUG][2019-10-24 08:49:32][org.loyer.komoo.dao.Ikm036smtDao.selectAll]- ==>  Preparing: SELECT step,items,upper,lower,value,unit,result FROM km036smt 
+[DEBUG][2019-10-24 08:49:32][org.loyer.komoo.dao.Ikm036smtDao.selectAll]- ==> Parameters: 
+[DEBUG][2019-10-24 08:49:32][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@5cc7297c [wrapping: com.mysql.cj.jdbc.ConnectionImpl@43b87b43]]
+[DEBUG][2019-10-24 08:49:32][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036smt_record WHERE date=? 
+[DEBUG][2019-10-24 08:49:32][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ==> Parameters: 2019-10-24(String)
+[DEBUG][2019-10-24 08:49:55][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@65232580 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@6d4a54c9]]
+[DEBUG][2019-10-24 08:49:55][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036smt_record 
+[DEBUG][2019-10-24 08:49:55][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ==> Parameters: 
+[DEBUG][2019-10-24 08:49:55][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@38103cad [wrapping: com.mysql.cj.jdbc.ConnectionImpl@6d4a54c9]]
+[DEBUG][2019-10-24 08:49:55][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ==>  Preparing: SELECT id,product_num,step,items,upper,lower,value,unit,result,times,date,remark FROM km036smt_testdata WHERE date=? 
+[DEBUG][2019-10-24 08:49:55][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ==> Parameters: 2019-10-24(String)
+[DEBUG][2019-10-24 09:11:29][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@31848421 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7c7a4b19]]
+[DEBUG][2019-10-24 09:11:29][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
+[DEBUG][2019-10-24 09:11:29][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
+[DEBUG][2019-10-24 09:27:02][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@e0d395e [wrapping: com.mysql.cj.jdbc.ConnectionImpl@37c7ece1]]
+[DEBUG][2019-10-24 09:27:02][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
+[DEBUG][2019-10-24 09:27:02][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
+[INFO ][2019-10-24 09:27:10][org.loyer.komoo.client.KM036Client]- 启动::13D123-1511
+[DEBUG][2019-10-24 09:27:10][org.loyer.komoo.dao.IUserDao.selectUserById]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@68c0e34a [wrapping: com.mysql.cj.jdbc.ConnectionImpl@37c7ece1]]
+[DEBUG][2019-10-24 09:27:10][org.loyer.komoo.dao.IUserDao.selectUserById]- ==>  Preparing: SELECT id,username,password FROM user_man where id=? 
+[DEBUG][2019-10-24 09:27:10][org.loyer.komoo.dao.IUserDao.selectUserById]- ==> Parameters: 1(Integer)
+[DEBUG][2019-10-24 09:27:10][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@5698623 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@37c7ece1]]
+[DEBUG][2019-10-24 09:27:10][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ==>  Preparing: SELECT step,items,upper,lower,value,unit,result FROM km036 
+[DEBUG][2019-10-24 09:27:10][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ==> Parameters: 
+[DEBUG][2019-10-24 09:27:10][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@27f56305 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@37c7ece1]]
+[DEBUG][2019-10-24 09:27:10][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036smt_record WHERE date=? 
+[DEBUG][2019-10-24 09:27:10][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ==> Parameters: 2019-10-24(String)
+[DEBUG][2019-10-24 09:27:27][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@6d8ec0d8 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@37c7ece1]]
+[DEBUG][2019-10-24 09:27:27][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036smt_record 
+[DEBUG][2019-10-24 09:27:27][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ==> Parameters: 
+[DEBUG][2019-10-24 09:27:27][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@5284ac02 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@37c7ece1]]
+[DEBUG][2019-10-24 09:27:27][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ==>  Preparing: SELECT id,product_num,step,items,upper,lower,value,unit,result,times,date,remark FROM km036smt_testdata WHERE date=? 
+[DEBUG][2019-10-24 09:27:27][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ==> Parameters: 2019-10-24(String)
+[DEBUG][2019-10-24 09:27:45][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@79f2aea [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7fb94dca]]
+[DEBUG][2019-10-24 09:27:45][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
+[DEBUG][2019-10-24 09:27:45][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
+[INFO ][2019-10-24 09:27:51][org.loyer.komoo.client.KM036Client]- 启动::13D123-1511
+[DEBUG][2019-10-24 09:27:51][org.loyer.komoo.dao.IUserDao.selectUserById]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3fce1f1a [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7fb94dca]]
+[DEBUG][2019-10-24 09:27:51][org.loyer.komoo.dao.IUserDao.selectUserById]- ==>  Preparing: SELECT id,username,password FROM user_man where id=? 
+[DEBUG][2019-10-24 09:27:51][org.loyer.komoo.dao.IUserDao.selectUserById]- ==> Parameters: 1(Integer)
+[DEBUG][2019-10-24 09:27:51][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4832b5d2 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7fb94dca]]
+[DEBUG][2019-10-24 09:27:51][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ==>  Preparing: SELECT step,items,upper,lower,value,unit,result FROM km036 
+[DEBUG][2019-10-24 09:27:51][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ==> Parameters: 
+[DEBUG][2019-10-24 09:27:51][org.loyer.komoo.dao.Ikm036unitRecordDao.selectByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@64d3633 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7fb94dca]]
+[DEBUG][2019-10-24 09:27:51][org.loyer.komoo.dao.Ikm036unitRecordDao.selectByDate]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036unit_record WHERE date=? 
+[DEBUG][2019-10-24 09:27:51][org.loyer.komoo.dao.Ikm036unitRecordDao.selectByDate]- ==> Parameters: 2019-10-24(String)
+[DEBUG][2019-10-24 09:27:55][org.loyer.komoo.dao.Ikm036unitRecordDao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3cc3a83e [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7fb94dca]]
+[DEBUG][2019-10-24 09:27:55][org.loyer.komoo.dao.Ikm036unitRecordDao.selectAll]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036unit_record 
+[DEBUG][2019-10-24 09:27:55][org.loyer.komoo.dao.Ikm036unitRecordDao.selectAll]- ==> Parameters: 
+[DEBUG][2019-10-24 09:27:55][org.loyer.komoo.dao.Ikm036unitTestDao.selectAllByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4ee386a0 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7fb94dca]]
+[DEBUG][2019-10-24 09:27:55][org.loyer.komoo.dao.Ikm036unitTestDao.selectAllByDate]- ==>  Preparing: SELECT id,product_num,step,items,upper,lower,value,unit,result,times,date,remark FROM km036unit_testdata WHERE date=? 
+[DEBUG][2019-10-24 09:27:55][org.loyer.komoo.dao.Ikm036unitTestDao.selectAllByDate]- ==> Parameters: 2019-10-24(String)
+[DEBUG][2019-10-24 09:29:34][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3bdae7b0 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@21a8d478]]
+[DEBUG][2019-10-24 09:29:34][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
+[DEBUG][2019-10-24 09:29:34][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
+[INFO ][2019-10-24 09:29:42][org.loyer.komoo.client.KM036Client]- 启动::13D123-1511
+[DEBUG][2019-10-24 09:29:42][org.loyer.komoo.dao.IUserDao.selectUserById]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1057e7a5 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@21a8d478]]
+[DEBUG][2019-10-24 09:29:42][org.loyer.komoo.dao.IUserDao.selectUserById]- ==>  Preparing: SELECT id,username,password FROM user_man where id=? 
+[DEBUG][2019-10-24 09:29:42][org.loyer.komoo.dao.IUserDao.selectUserById]- ==> Parameters: 1(Integer)
+[DEBUG][2019-10-24 09:29:42][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@fc652e5 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@21a8d478]]
+[DEBUG][2019-10-24 09:29:42][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ==>  Preparing: SELECT step,items,upper,lower,value,unit,result FROM km036 
+[DEBUG][2019-10-24 09:29:42][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ==> Parameters: 
+[DEBUG][2019-10-24 09:29:42][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@21dafc20 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@21a8d478]]
+[DEBUG][2019-10-24 09:29:42][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036smt_record WHERE date=? 
+[DEBUG][2019-10-24 09:29:42][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ==> Parameters: 2019-10-24(String)
+[DEBUG][2019-10-24 09:30:31][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@7bab54cf [wrapping: com.mysql.cj.jdbc.ConnectionImpl@21a8d478]]
+[DEBUG][2019-10-24 09:30:31][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036smt_record 
+[DEBUG][2019-10-24 09:30:31][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ==> Parameters: 
+[DEBUG][2019-10-24 09:30:31][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@2114eba5 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@21a8d478]]
+[DEBUG][2019-10-24 09:30:31][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ==>  Preparing: SELECT id,product_num,step,items,upper,lower,value,unit,result,times,date,remark FROM km036smt_testdata WHERE date=? 
+[DEBUG][2019-10-24 09:30:31][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ==> Parameters: 2019-10-24(String)
+[DEBUG][2019-10-24 09:33:09][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@6612366c [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7f5129de]]
+[DEBUG][2019-10-24 09:33:09][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
+[DEBUG][2019-10-24 09:33:09][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
+[INFO ][2019-10-24 09:33:14][org.loyer.komoo.client.KM036Client]- 启动::13D123-1511
+[DEBUG][2019-10-24 09:33:14][org.loyer.komoo.dao.IUserDao.selectUserById]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@e6570b3 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7f5129de]]
+[DEBUG][2019-10-24 09:33:14][org.loyer.komoo.dao.IUserDao.selectUserById]- ==>  Preparing: SELECT id,username,password FROM user_man where id=? 
+[DEBUG][2019-10-24 09:33:14][org.loyer.komoo.dao.IUserDao.selectUserById]- ==> Parameters: 1(Integer)
+[DEBUG][2019-10-24 09:33:14][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4dc8a296 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7f5129de]]
+[DEBUG][2019-10-24 09:33:14][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ==>  Preparing: SELECT step,items,upper,lower,value,unit,result FROM km036 
+[DEBUG][2019-10-24 09:33:14][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ==> Parameters: 
+[DEBUG][2019-10-24 09:33:14][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1522eab1 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7f5129de]]
+[DEBUG][2019-10-24 09:33:14][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036smt_record WHERE date=? 
+[DEBUG][2019-10-24 09:33:14][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ==> Parameters: 2019-10-24(String)
+[DEBUG][2019-10-24 09:33:52][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3e4c0f4d [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7f5129de]]
+[DEBUG][2019-10-24 09:33:52][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036smt_record 
+[DEBUG][2019-10-24 09:33:52][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ==> Parameters: 
+[DEBUG][2019-10-24 09:33:52][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@f6cbca7 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@7f5129de]]
+[DEBUG][2019-10-24 09:33:52][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ==>  Preparing: SELECT id,product_num,step,items,upper,lower,value,unit,result,times,date,remark FROM km036smt_testdata WHERE date=? 
+[DEBUG][2019-10-24 09:33:52][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ==> Parameters: 2019-10-24(String)
+[DEBUG][2019-10-24 09:34:15][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@7d0353c2 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@ecb793d]]
+[DEBUG][2019-10-24 09:34:15][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
+[DEBUG][2019-10-24 09:34:15][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
+[INFO ][2019-10-24 09:34:18][org.loyer.komoo.client.KM036Client]- 启动::13D123-1511
+[DEBUG][2019-10-24 09:34:18][org.loyer.komoo.dao.IUserDao.selectUserById]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@19dcb2fe [wrapping: com.mysql.cj.jdbc.ConnectionImpl@ecb793d]]
+[DEBUG][2019-10-24 09:34:18][org.loyer.komoo.dao.IUserDao.selectUserById]- ==>  Preparing: SELECT id,username,password FROM user_man where id=? 
+[DEBUG][2019-10-24 09:34:18][org.loyer.komoo.dao.IUserDao.selectUserById]- ==> Parameters: 1(Integer)
+[DEBUG][2019-10-24 09:34:18][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@872a87a [wrapping: com.mysql.cj.jdbc.ConnectionImpl@ecb793d]]
+[DEBUG][2019-10-24 09:34:18][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ==>  Preparing: SELECT step,items,upper,lower,value,unit,result FROM km036 
+[DEBUG][2019-10-24 09:34:18][org.loyer.komoo.dao.Ikm036Dao.selectAll]- ==> Parameters: 
+[DEBUG][2019-10-24 09:34:18][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@793c7e01 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@ecb793d]]
+[DEBUG][2019-10-24 09:34:18][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036smt_record WHERE date=? 
+[DEBUG][2019-10-24 09:34:18][org.loyer.komoo.dao.Ikm036smtRecordDao.selectByDate]- ==> Parameters: 2019-10-24(String)
+[DEBUG][2019-10-24 09:35:29][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@77905ef2 [wrapping: com.mysql.cj.jdbc.ConnectionImpl@37a29462]]
+[DEBUG][2019-10-24 09:35:29][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ==>  Preparing: SELECT id,name,sum,ok,ng,seconds,date FROM km036smt_record 
+[DEBUG][2019-10-24 09:35:29][org.loyer.komoo.dao.Ikm036smtRecordDao.selectAll]- ==> Parameters: 
+[DEBUG][2019-10-24 09:35:29][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@5a014e5d [wrapping: com.mysql.cj.jdbc.ConnectionImpl@6f11df9e]]
+[DEBUG][2019-10-24 09:35:29][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ==>  Preparing: SELECT id,product_num,step,items,upper,lower,value,unit,result,times,date,remark FROM km036smt_testdata WHERE date=? 
+[DEBUG][2019-10-24 09:35:29][org.loyer.komoo.dao.Ikm036smtTestDao.selectAllByDate]- ==> Parameters: 2019-10-24(String)

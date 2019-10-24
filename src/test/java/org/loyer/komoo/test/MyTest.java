@@ -8,8 +8,8 @@ import org.loyer.komoo.beans.TestData;
 import org.loyer.komoo.beans.ViewData;
 import org.loyer.komoo.service.IUserService;
 import org.loyer.komoo.service.IViewDataService;
-import org.loyer.komoo.service.impl.Km030smtServiceImpl;
-import org.loyer.komoo.service.impl.Km034smtServiceImpl;
+import org.loyer.komoo.service.impl.Km030ServiceImpl;
+import org.loyer.komoo.service.impl.Km034ServiceImpl;
 import org.loyer.komoo.service.impl.Km036smtTestServiceImpl;
 import org.loyer.komoo.service.impl.UserServiceImpl;
 import org.springframework.context.ApplicationContext;
@@ -35,7 +35,7 @@ public class MyTest {
   }
   @Test
   public void test02() {
-    Km030smtServiceImpl km030smtServiceImpl = (Km030smtServiceImpl) ac.getBean("km030smtServiceImpl");
+    Km030ServiceImpl km030smtServiceImpl = (Km030ServiceImpl) ac.getBean("km030smtServiceImpl");
     List<ViewData> list = km030smtServiceImpl.getAll();
     for (ViewData viewData : list) {
       System.out.println(viewData);
@@ -51,7 +51,7 @@ public class MyTest {
   }*/
   @Test
   public void test04() {
-    Km034smtServiceImpl km034smtServiceImpl = (Km034smtServiceImpl) ac.getBean("km034smtServiceImpl");
+    Km034ServiceImpl km034smtServiceImpl = (Km034ServiceImpl) ac.getBean("km034smtServiceImpl");
     List<ViewData> list = km034smtServiceImpl.getAll();
     for (ViewData viewData : list) {
       System.out.println(viewData);

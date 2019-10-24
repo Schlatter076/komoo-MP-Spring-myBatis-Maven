@@ -3,18 +3,18 @@ package org.loyer.komoo.service.impl;
 import java.util.List;
 
 import org.loyer.komoo.beans.ViewData;
-import org.loyer.komoo.dao.Ikm034unitDao;
+import org.loyer.komoo.dao.Ikm034Dao;
 import org.loyer.komoo.service.IViewDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Km034unitServiceImpl implements IViewDataService {
+public class Km034ServiceImpl implements IViewDataService {
   
   @Autowired
-  private Ikm034unitDao dao;
+  private Ikm034Dao dao;
   
-  public void setDao(Ikm034unitDao dao) {
+  public void setDao(Ikm034Dao dao) {
     this.dao = dao;
   }
 

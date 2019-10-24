@@ -33,14 +33,10 @@ public class LogIn extends LogInFrame {
   public void logInEvent() {
     if (!isDataView) {
       String type = typeBox.getSelectedItem().toString();
-      if (type.toLowerCase().contains("km036")) {
+      if (type.endsWith("1511")) {
         isDataView = true;
         frame.dispose();
-        if(type.toLowerCase().contains("smt")) {
-          KM036Client.getDataView(context, type, "km036smt");
-        } else if(type.toLowerCase().contains("unit")) {
-          KM036Client.getDataView(context, type, "km036unit");
-        }
+        KM036Client.getDataView(context, type, "km036", smtBox.isSelected() ? "smt" : "unit");
       } 
       else {
         JOptionPane.showMessageDialog(null, "暂无该机种数据!");

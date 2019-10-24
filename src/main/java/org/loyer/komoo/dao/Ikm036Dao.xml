@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.loyer.komoo.dao.Ikm047unitDao">
+<mapper namespace="org.loyer.komoo.dao.Ikm036Dao">
 
   <select id="selectAll" resultType="ViewData">
-    SELECT step,items,upper,lower,value,unit,result FROM km047unit
+    SELECT step,items,upper,lower,value,unit,result FROM km036
   </select>
   
 </mapper>
