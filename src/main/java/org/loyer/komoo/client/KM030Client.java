@@ -9,14 +9,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
 
@@ -25,7 +23,7 @@ import org.loyer.komoo.beans.TestData;
 import org.loyer.komoo.beans.User;
 import org.loyer.komoo.beans.ViewData;
 import org.loyer.komoo.commands.Commands;
-import org.loyer.komoo.commands.KM036Commands;
+import org.loyer.komoo.commands.KM030Commands;
 import org.loyer.komoo.service.IRecordDataService;
 import org.loyer.komoo.service.ITestDataService;
 import org.loyer.komoo.service.IUserService;
@@ -37,7 +35,7 @@ import org.springframework.context.ApplicationContext;
 import loyer.gui.LoyerFrame;
 import loyer.serial.SerialPortTools;
 
-public class KM036Client extends LoyerFrame {
+public class KM030Client extends LoyerFrame {
 
   /** 测试数据表 */
   private JTable table;
@@ -75,7 +73,7 @@ public class KM036Client extends LoyerFrame {
   private boolean isFinished = false;
 
   /** 本类日志记录对象 */
-  private static final Logger logger = LoggerFactory.getLogger(KM036Client.class);
+  private static final Logger logger = LoggerFactory.getLogger(KM030Client.class);
 
   /** 单片机端口名和地址映射集合 */
   private Map<String, Byte> portMap;
@@ -86,19 +84,12 @@ public class KM036Client extends LoyerFrame {
   private Thread testThread;
 
   private ApplicationContext context;
-  
+
   private boolean mcu_initFlag;
 
   private boolean mcu_portSetFlag;
   private boolean mcu_portReadFlag;
   private boolean isSetMultipleRowNG;
-
-  private final Lock com1Lock = new ReentrantLock();
-  private final Condition com1Buzy = com1Lock.newCondition();
-  private final Lock com2Lock = new ReentrantLock();
-  private final Condition com2Buzy = com2Lock.newCondition();
-  private final Lock com3Lock = new ReentrantLock();
-  private final Condition com3Buzy = com2Lock.newCondition();
 
   /**
    * 获取测试数据主页面
@@ -108,7 +99,7 @@ public class KM036Client extends LoyerFrame {
 
       @Override
       public void run() {
-        KM036Client win = new KM036Client(ac, type, base, baseType);
+        KM030Client win = new KM030Client(ac, type, base, baseType);
         win.frame.setVisible(true);
         win.setTableCellRenderer();
         win.initLoad();
@@ -116,7 +107,7 @@ public class KM036Client extends LoyerFrame {
     });
   }
 
-  public KM036Client(ApplicationContext ac, String type, String base, String baseType) {
+  public KM030Client(ApplicationContext ac, String type, String base, String baseType) {
 
     this.context = ac; // 获取Spring上下文对象
     recordService = (IRecordDataService) context.getBean(base + baseType + "RecordServiceImpl");
@@ -177,21 +168,25 @@ public class KM036Client extends LoyerFrame {
     portMap.put("PING", (byte) 0x63);
 
     commandsMap = new HashMap<>();
-    commandsMap.put(1, KM036Commands.SET_BUZZER);
-    commandsMap.put(2, KM036Commands.CLR_ALL);
-    commandsMap.put(3, KM036Commands.SET_WA);
-    commandsMap.put(4, KM036Commands.SET_SEAT);
-    commandsMap.put(5, KM036Commands.SET_WSTEP_1);
-    commandsMap.put(6, KM036Commands.SET_WSTEP_2);
-    commandsMap.put(7, KM036Commands.SET_WSTEP_3);
-    commandsMap.put(8, KM036Commands.SET_WSTEP_4);
-    commandsMap.put(9, KM036Commands.SET_WNOZZLE_1);
-    commandsMap.put(10, KM036Commands.SET_WNOZZLE_2);
-    commandsMap.put(11, KM036Commands.SET_WNOZZLE_3);
-    commandsMap.put(12, KM036Commands.SET_WNOZZLE_4);
-    commandsMap.put(13, KM036Commands.SET_WPUMP);
-    commandsMap.put(14, KM036Commands.SET_DEMOT);
-    commandsMap.put(15, KM036Commands.SET_WVALUE);
+    commandsMap.put(1, KM030Commands.SET_BUZZER);
+    commandsMap.put(2, KM030Commands.CLR_ALL);
+    commandsMap.put(3, KM030Commands.SET_WA);
+    commandsMap.put(4, KM030Commands.SET_SEAT);
+    commandsMap.put(5, KM030Commands.SET_DRY);
+    commandsMap.put(6, KM030Commands.SET_WSTEP_1);
+    commandsMap.put(7, KM030Commands.SET_WSTEP_2);
+    commandsMap.put(8, KM030Commands.SET_WSTEP_3);
+    commandsMap.put(9, KM030Commands.SET_WSTEP_4);
+    commandsMap.put(10, KM030Commands.SET_WNOZZLE_1);
+    commandsMap.put(11, KM030Commands.SET_WNOZZLE_2);
+    commandsMap.put(12, KM030Commands.SET_WNOZZLE_3);
+    commandsMap.put(13, KM030Commands.SET_WNOZZLE_4);
+    commandsMap.put(14, KM030Commands.SET_DRYMOT);
+    commandsMap.put(15, KM030Commands.SET_WPUMP);
+    commandsMap.put(16, KM030Commands.SET_DEMOT);
+    commandsMap.put(17, KM030Commands.SET_WVALUE);
+    commandsMap.put(18, KM030Commands.SET_MODELEDC);
+    commandsMap.put(19, KM030Commands.SET_ULT_LIGHT);
 
     persistScroll.setViewportView(new JLabel(new ImageIcon(JLabel.class.getResource("/pic/frame.jpg"))));
 
@@ -267,27 +262,20 @@ public class KM036Client extends LoyerFrame {
       e.printStackTrace();
     }
     byte[] data = SerialPortTools.readBytes(COM[0]); // 先读取
-
-    com1Lock.lock(); // 加锁
-    try {
-      while (com1HasData) {
-        com1Buzy.await();
-      }
-      com1Bytes = data; // 将数据填入
-      logger.info("COM1->" + SerialPortTools.bytesToHex(com1Bytes));
-
+    if (data.length < 5)
+      return;
+    if (!com1HasData) {
+      com1HasData = true;
+      com1Bytes = data; // 将当前值取回，避免冲突
+      logger.info("MCU->" + SerialPortTools.bytesToHex(com1Bytes));
+      // System.out.println("MCU->" + SerialPortTools.bytesToHex(com1Bytes));
       if (isEquals(com1Bytes[0], "f3") && isEquals(com1Bytes[1], "f4") && isEquals(com1Bytes[10], "0a")) {
         if (isEquals(com1Bytes[9], "20")) { // 下位机开始
-          SerialPortTools.writeBytes(COM[0], Commands.START);
-          logger.info("下位机请求开始");
           if (scanField.getText().length() > 5) { // 如果扫描区有数据
-            if (scrollBar != null && scrollBar.getValue() != 0) {
-              scrollBar.setValue(scrollBar.getMinimum());
-              dataPanel.repaint();
-            }
             initTable();
             statuField.setText("测试中...");
             scanField.setEditable(false);
+            SerialPortTools.writeBytes(COM[0], Commands.START);
           } else {
             initTable();
             statuField.setText("未扫描");
@@ -303,13 +291,9 @@ public class KM036Client extends LoyerFrame {
           mcu_portSetFlag = true;
         } else if (isEquals(com1Bytes[9], "3d")) { // 单片机端口回读成功返回
           mcu_portReadFlag = true;
-          com1HasData = true;
         }
       }
-    } catch (InterruptedException e) {
-      logger.error("COM1加锁失败:" + e.getMessage());
-    } finally {
-      com1Lock.unlock();
+      com1HasData = false;
     }
   }
 
@@ -318,68 +302,47 @@ public class KM036Client extends LoyerFrame {
     try {
       Thread.sleep(50);
     } catch (InterruptedException e) {
-      logger.error("COM2等待数据进入缓冲区失败:" + e.getMessage());
+      e.printStackTrace();
     }
-
-    // 先读取数据
-    byte[] data = SerialPortTools.readBytes(COM[1]);
-
-    com2Lock.lock(); // 加锁
-    try {
-      while (com2HasData) {
-        com2Buzy.await();
-      }
-      com2Bytes = data;
-      logger.info("COM2->" + SerialPortTools.bytesToHex(com2Bytes));
-      if (isEquals(com2Bytes[0], "f3") && isEquals(com2Bytes[1], "f4") && isEquals(com2Bytes[2], "0e")
-          && isEquals(com2Bytes[3], "21") && isEquals(com2Bytes[4], "47") && isEquals(com2Bytes[17], "fc")) {
+    if (!com2HasData) {
+      com2Bytes = SerialPortTools.readBytes(COM[1]);
+      logger.info("产品->" + SerialPortTools.bytesToHex(com2Bytes));
+      // System.out.println("产品->" + SerialPortTools.bytesToHex(com2Bytes));
+      if (com2Bytes.length < 5)
+        return;
+      if (isEquals(com2Bytes[0], "f3") && isEquals(com2Bytes[1], "f4") && isEquals(com2Bytes[2], "17")
+          && isEquals(com2Bytes[3], "21") && isEquals(com2Bytes[4], "47") && isEquals(com2Bytes[26], "fc")) {
 
         com2HasData = true;
       }
-    } catch (InterruptedException e) {
-      logger.error("COM2加锁失败:" + e.getMessage());
-    } finally {
-      com2Lock.unlock();
     }
   }
 
   @Override
   public void COM3DataArrived() {
     try {
-      Thread.sleep(50);
+      Thread.sleep(20);
     } catch (InterruptedException e) {
-      logger.error("COM3等待数据进入缓冲区失败:" + e.getMessage());
+      e.printStackTrace();
     }
-    // 先读取数据
-    byte[] data = SerialPortTools.readBytes(COM[2]);
-    com3Lock.lock(); // 加锁
+    com3Bytes = SerialPortTools.readBytes(COM[2]);
+    logger.info("东琦表->" + SerialPortTools.bytesToHex(com3Bytes));
+    // System.out.println("东琦表->" + SerialPortTools.bytesToHex(com3Bytes));
+    // 校验表地址
+    if ((isEquals(com3Bytes[0], "01") || isEquals(com3Bytes[0], "00"))) {
+      // CRC校验
+      if (String.format("%04x", getCrc(Arrays.copyOf(com3Bytes, com3Bytes.length - 2)))
+          .equals((String.format("%02x", com3Bytes[com3Bytes.length - 1])
+              + String.format("%02x", com3Bytes[com3Bytes.length - 2])))) {
 
-    try {
-      while (com3HasData) {
-        com3Buzy.await();
-      }
-      com3Bytes = data;
-      logger.info("COM3->" + SerialPortTools.bytesToHex(com3Bytes));
-      // 校验表地址
-      if ((isEquals(com3Bytes[0], "01") || isEquals(com3Bytes[0], "00"))) {
-        // CRC校验
-        if (String.format("%04x", getCrc(Arrays.copyOf(com3Bytes, com3Bytes.length - 2)))
-            .equals((String.format("%02x", com3Bytes[com3Bytes.length - 1])
-                + String.format("%02x", com3Bytes[com3Bytes.length - 2])))) {
+        // 测试值返回
+        if (isEquals(com3Bytes[1], "03") && isEquals(com3Bytes[2], "04")) {
+          rec_data = ((double) (((com3Bytes[3] & 0xff) << 8) | (com3Bytes[4] & 0xff)))
+              / Math.pow(10, (((com3Bytes[5] & 0xff) << 8) | (com3Bytes[6] & 0xff)));
 
-          // 测试值返回
-          if (isEquals(com3Bytes[1], "03") && isEquals(com3Bytes[2], "04")) {
-            rec_data = ((double) (((com3Bytes[3] & 0xff) << 8) | (com3Bytes[4] & 0xff)))
-                / Math.pow(10, (((com3Bytes[5] & 0xff) << 8) | (com3Bytes[6] & 0xff)));
-
-            com3HasData = true;
-          }
+          com3HasData = true;
         }
       }
-    } catch (InterruptedException e) {
-      logger.error("COM3加锁失败:" + e.getMessage());
-    } finally {
-      com3Lock.unlock();
     }
   }
 
@@ -408,6 +371,7 @@ public class KM036Client extends LoyerFrame {
       System.exit(0);
     }
   }
+
   /**
    * 获取CRC校验码
    * 
@@ -427,6 +391,82 @@ public class KM036Client extends LoyerFrame {
       }
     }
     return wCrc;
+  }
+
+  /**
+   * 写参数到东琦表
+   * 
+   * @param bs
+   */
+  public void writeParams2TOKYMeter(byte[] bs) {
+    SerialPortTools.writeBytes(COM[2], bs);
+    try {
+      Thread.sleep(120); // 延时确保响应成功
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * 端口控制
+   * 
+   * @param pc
+   * @param pf
+   * @param pg
+   * @return
+   */
+  public boolean mcu_portSet(int pc, int pf, int pg) {
+    Commands.PORT_SET[2] = 3;
+    Commands.PORT_SET[3] = portMap.get("PORTC");
+    Commands.PORT_SET[4] = (byte) (pc & 0xff);
+    Commands.PORT_SET[5] = portMap.get("PORTF");
+    Commands.PORT_SET[6] = (byte) (pf & 0xff);
+    Commands.PORT_SET[7] = portMap.get("PORTG");
+    Commands.PORT_SET[8] = (byte) (pg & 0xff);
+    byte b = 0;
+    do {
+      try {
+        if (b++ >= 3) {
+          b = 0;
+          return false;
+        }
+        SerialPortTools.writeBytes(COM[0], Commands.PORT_SET);
+        Thread.sleep(300);
+      } catch (InterruptedException e) {
+        logger.error(e.getMessage());
+      }
+    } while (!mcu_portSetFlag);
+    mcu_portSetFlag = false;
+    return true;
+  }
+
+  /**
+   * 端口回读
+   * 
+   * @param portName
+   * @return
+   */
+  public boolean mcu_portRead(byte... portName) {
+    Commands.PORT_READ[2] = (byte) portName.length;
+    int index = 3;
+    for (byte b : portName) {
+      Commands.PORT_READ[index++] = b;
+    }
+    byte b = 0;
+    do {
+      try {
+        if (b++ >= 3) {
+          b = 0;
+          return false;
+        }
+        SerialPortTools.writeBytes(COM[0], Commands.PORT_READ);
+        Thread.sleep(300);
+      } catch (InterruptedException e) {
+        logger.error(e.getMessage());
+      }
+    } while (!mcu_portReadFlag);
+    mcu_portReadFlag = false;
+    return true;
   }
 
   /**
@@ -471,12 +511,7 @@ public class KM036Client extends LoyerFrame {
     scanField.setEditable(true);
     com1HasData = false;
     com2HasData = false;
-    com1HasData = false;
-    // com1Buzy.signal();
-    com2HasData = false;
-    // com2Buzy.signal();
     com3HasData = false;
-    // com3Buzy.signal();
     scanField.requestFocusInWindow();
   }
 
@@ -544,10 +579,6 @@ public class KM036Client extends LoyerFrame {
     return Integer.parseInt(table.getValueAt(row, col).toString());
   }
 
-  public int getHexValue(int row, int col) {
-    return Integer.parseInt(table.getValueAt(row, col).toString(), 16);
-  }
-
   /**
    * 获取对应单元格的数值
    * 
@@ -587,97 +618,12 @@ public class KM036Client extends LoyerFrame {
       dataPanel.repaint();
     }
     table.setValueAt(val, row, 5);
-    if (val > getIntValue(row, 3) || val < getIntValue(row, 4)) {
+    if (val > getDoubleValue(row, 3) || val < getDoubleValue(row, 4)) {
       table.setValueAt("NG", row, 7);
       record(row, "测试NG");
       return false;
     }
     table.setValueAt("PASS", row, 7);
-    return true;
-  }
-
-  public boolean setADC(String val, int row) {
-    table.setValueAt(val, row, 5);
-    if (getHexValue(row, 5) > getHexValue(row, 3) || getHexValue(row, 5) < getHexValue(row, 4)) { // 合格
-      table.setValueAt("NG", row, 7);
-      record(row, "测试NG");
-      return false;
-    }
-    table.setValueAt("PASS", row, 7);
-    record(row, "测试PASS");
-    return true;
-  }
-
-  /**
-   * 写参数到东琦表
-   * 
-   * @param bs
-   */
-  public void writeParams2TOKYMeter(byte[] bs) {
-    SerialPortTools.writeBytes(COM[2], bs);
-    try {
-      Thread.sleep(120); // 延时确保响应成功
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-  }
-
-  /**
-   * 端口控制
-   * 
-   * @param pb
-   * @param pc
-   * @return
-   */
-  public boolean mcu_portSet(int pb, int pc) {
-    Commands.PORT_SET[2] = 2;
-    Commands.PORT_SET[3] = portMap.get("PORTB");
-    Commands.PORT_SET[4] = (byte) (pb & 0xff);
-    Commands.PORT_SET[5] = portMap.get("PORTC");
-    Commands.PORT_SET[6] = (byte) (pc & 0xff);
-    byte b = 0;
-    do {
-      try {
-        if (b++ >= 3) {
-          b = 0;
-          return false;
-        }
-        SerialPortTools.writeBytes(COM[0], Commands.PORT_SET);
-        Thread.sleep(200);
-      } catch (InterruptedException e) {
-        logger.error(e.getMessage());
-      }
-    } while (!mcu_portSetFlag);
-    mcu_portSetFlag = false;
-    return true;
-  }
-
-  /**
-   * 端口回读
-   * 
-   * @param portName
-   * @return
-   */
-  public boolean mcu_portRead(byte... portName) {
-    Commands.PORT_READ[2] = (byte) portName.length;
-    int index = 3;
-    for (byte b : portName) {
-      Commands.PORT_READ[index++] = b;
-    }
-    byte b = 0;
-    do {
-      try {
-        if (b++ >= 3) {
-          b = 0;
-          return false;
-        }
-        SerialPortTools.writeBytes(COM[0], Commands.PORT_READ);
-        Thread.sleep(200);
-      } catch (InterruptedException e) {
-        logger.error(e.getMessage());
-      }
-    } while (!mcu_portReadFlag);
-    mcu_portReadFlag = false;
     return true;
   }
 
@@ -709,12 +655,6 @@ public class KM036Client extends LoyerFrame {
     if (!spotButt.isSelected()) {
       SerialPortTools.writeBytes(COM[0], Commands.NG);
     }
-    com1HasData = false;
-    // com1Buzy.signal();
-    com2HasData = false;
-    // com2Buzy.signal();
-    com3HasData = false;
-    // com3Buzy.signal();
     scanField.requestFocusInWindow();
   }
 
@@ -734,10 +674,9 @@ public class KM036Client extends LoyerFrame {
       if (COM[6] != null) { // 上传良品编号
         SerialPortTools.writeString(COM[6], "UTF-8", SEPARATOR + scanField.getText() + SEPARATOR);
       }
-      record(table.getRowCount() - 2, "全数PASS");
       scanField.setEditable(true);
-      scanField.setText("");
       statuField.setText("PASS");
+      record(table.getRowCount() - 2, "测试PASS");
       okCount++;
       totalCount = okCount + ngCount;
       okField.setText(okCount + "");
@@ -749,6 +688,7 @@ public class KM036Client extends LoyerFrame {
       scanField.requestFocusInWindow();
     }
   }
+
   /**
    * 载入
    */
@@ -758,49 +698,11 @@ public class KM036Client extends LoyerFrame {
     initCountAndPieChart();
     initCOM(0);
     initCOM(1);
+    initCOM(2);
     initCOM(6);
     timeThread.start();
     testThread.start();
     scanField.requestFocusInWindow();
-  }
-  /**
-   * 蜂鸣器检测
-   * 
-   * @return
-   */
-  public boolean checkBuzz() {
-
-    if (!com2SendMultiple(KM036Commands.SET_BUZZER)) {
-      setResultNG();
-      table.setValueAt("fail", 2, 5);
-      table.setValueAt("NG", 2, 7);
-      return false;
-    }
-    com2HasData = false;
-    // com2Buzy.signal();
-    int back = JOptionPane.showConfirmDialog(null, "产品蜂鸣器是否鸣叫?", "询问", JOptionPane.YES_NO_OPTION);
-    if (back != JOptionPane.YES_OPTION) {
-      table.setValueAt("fail", 2, 5);
-      table.setValueAt("NG", 2, 7);
-      setResultNG();
-      return false;
-    }
-    table.setValueAt("ok", 2, 5);
-    table.setValueAt("PASS", 2, 7);
-    return true;
-  }
-
-  public boolean com2SendMultiple(byte[] buff) {
-    byte b = 0;
-    do {
-      if (b++ >= 3) {
-        b = 0;
-        break;
-      }
-      SerialPortTools.writeBytes(COM[1], buff);
-      delay(200);
-    } while (!com2HasData);
-    return com2HasData;
   }
 
   public boolean com3SendMultiple(byte[] buff) {
@@ -809,28 +711,525 @@ public class KM036Client extends LoyerFrame {
       try {
         if (b++ >= 3) {
           b = 0;
-          break;
+          return false;
         }
         SerialPortTools.writeBytes(COM[2], buff);
-        Thread.sleep(200);
+        Thread.sleep(300);
       } catch (InterruptedException e) {
-        logger.error("COM3发送失败:" + e.getMessage());
+        logger.error(e.getMessage());
       }
     } while (!com3HasData);
-    return com3HasData;
+    com3HasData = false;
+    return true;
+  }
+
+  public int getHexValue(int row, int col) {
+    return Integer.parseInt(table.getValueAt(row, col).toString(), 16);
+  }
+
+  public boolean setADC(String val, int row) {
+    table.setValueAt(val, row, 5);
+    if (getHexValue(row, 5) > getHexValue(row, 3) || getHexValue(row, 5) < getHexValue(row, 4)) { // 合格
+      table.setValueAt("NG", row, 7);
+      record(row, "测试NG");
+      return false;
+    }
+    table.setValueAt("PASS", row, 7);
+    return true;
+  }
+
+  public void TOKYtest() {
+    // step1
+    writeParams2TOKYMeter(Commands.WRITE_VOL_CHANNEL_3);
+    writeParams2TOKYMeter(Commands.WRITE_VOL_DP_0);
+    delay(1000);
+    if (!com3SendMultiple(Commands.READ_VOL)) {
+      setResultNG();
+      return;
+    }
+    if (!autoSetResultStatu(0, rec_data) && !spotButt.isSelected()) {
+      return;
+    }
+    // step2
+    if (!volAndCurTest(0x00, 0x74, 0x01, Commands.READ_VOL, 1) && !spotButt.isSelected()) {
+      return;
+    }
+    // step3
+    if (!checkBuzz()) {
+      setResultNG();
+      return;
+    }
+    // step4
+    if (!com2SendMultiple(KM030Commands.SET_WA)) {
+      setResultNG();
+      return;
+    }
+    if (!volAndCurTest(0x02, 0x34, 0x01, Commands.READ_VOL, 2) && !spotButt.isSelected()) {
+      return;
+    }
+    // step5
+    if (!com2SendMultiple(KM030Commands.SET_SEAT)) {
+      setResultNG();
+      return;
+    }
+    if (!volAndCurTest(0x01, 0x14, 0x01, Commands.READ_VOL, 3) && !spotButt.isSelected()) {
+      return;
+    }
+    // step6
+    if (!com2SendMultiple(KM030Commands.SET_DRY)) {
+      setResultNG();
+      return;
+    }
+    if (!volAndCurTest(0x00, 0x94, 0x01, Commands.READ_VOL, 4) && !spotButt.isSelected()) {
+      return;
+    }
+    // step7
+    writeParams2TOKYMeter(Commands.WRITE_VOL_CHANNEL_2);
+    writeParams2TOKYMeter(Commands.WRITE_VOL_DP_1);
+    if (!volAndCurTest(0x00, 0x14, 0x00, Commands.READ_VOL, 5) && !spotButt.isSelected()) {
+      return;
+    }
+    // step8
+    writeParams2TOKYMeter(Commands.WRITE_CUR_DP_3);
+    if (!volAndCurTest(0x98, 0x14, 0x01, Commands.READ_CUR, 6) && !spotButt.isSelected()) {
+      return;
+    }
+    // step9
+    if (!volAndCurTest(0x14, 0x14, 0x01, Commands.READ_CUR, 7) && !spotButt.isSelected()) {
+      return;
+    }
+    if (!mcu_portSet(0x00, 0x14, 0x01)) {
+      setResultNG();
+      return;
+    }
+    // step10
+    if (!mcu_portRead(portMap.get("PINB"), portMap.get("PINE"))) {
+      setResultNG();
+      return;
+    }
+    for (int i = 8; i < 14; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com1Bytes[3] & (1 << 6)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+    for (int i = 14; i < 19; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com1Bytes[2] & (1 << 0)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+    for (int i = 19; i < 28; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com1Bytes[2] & (1 << 1)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+    if (isSetMultipleRowNG) {
+      isSetMultipleRowNG = false;
+      setResultNG();
+      return;
+    }
+    // step11
+    if (!com2SendMultiple(KM030Commands.SET_WSTEP_1)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PINB"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    for (int i = 28; i < 32; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com1Bytes[2] & (1 << (3 + (i - 28)))) != 0 ? 1 : 0)
+          && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+
+    if (isSetMultipleRowNG) {
+      isSetMultipleRowNG = false;
+      setResultNG();
+      return;
+    }
+    // step12
+    if (!com2SendMultiple(KM030Commands.SET_WSTEP_2)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PINB"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    for (int i = 32; i < 36; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com1Bytes[2] & (1 << (3 + (i - 32)))) != 0 ? 1 : 0)
+          && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+
+    if (isSetMultipleRowNG) {
+      isSetMultipleRowNG = false;
+      setResultNG();
+      return;
+    }
+    // step13
+    if (!com2SendMultiple(KM030Commands.SET_WSTEP_3)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PINB"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    for (int i = 36; i < 40; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com1Bytes[2] & (1 << (3 + (i - 36)))) != 0 ? 1 : 0)
+          && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+
+    if (isSetMultipleRowNG) {
+      isSetMultipleRowNG = false;
+      setResultNG();
+      return;
+    }
+    // step14
+    if (!com2SendMultiple(KM030Commands.SET_WSTEP_4)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PINB"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    for (int i = 40; i < 44; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com1Bytes[2] & (1 << (3 + (i - 40)))) != 0 ? 1 : 0)
+          && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+
+    if (isSetMultipleRowNG) {
+      isSetMultipleRowNG = false;
+      setResultNG();
+      return;
+    }
+    // step15
+    if (!com2SendMultiple(KM030Commands.SET_WNOZZLE_1)) {
+      setResultNG();
+      return;
+    }
+    delay(200);
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PINB"), portMap.get("PIND"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    if (!autoSetMultipleRowResultStatu(44, (com1Bytes[2] & (1 << 7)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    for (int i = 45; i < 48; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com1Bytes[3] & (1 << (i - 45))) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+
+    if (isSetMultipleRowNG) {
+      isSetMultipleRowNG = false;
+      setResultNG();
+      return;
+    }
+    // step16
+    if (!com2SendMultiple(KM030Commands.SET_WNOZZLE_2)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PINB"), portMap.get("PIND"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    if (!autoSetMultipleRowResultStatu(48, (com1Bytes[2] & (1 << 7)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    for (int i = 49; i < 52; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com1Bytes[3] & (1 << (i - 49))) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+
+    if (isSetMultipleRowNG) {
+      isSetMultipleRowNG = false;
+      setResultNG();
+      return;
+    }
+    // step17
+    if (!com2SendMultiple(KM030Commands.SET_WNOZZLE_3)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PINB"), portMap.get("PIND"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    if (!autoSetMultipleRowResultStatu(52, (com1Bytes[2] & (1 << 7)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    for (int i = 53; i < 56; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com1Bytes[3] & (1 << (i - 53))) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+
+    if (isSetMultipleRowNG) {
+      isSetMultipleRowNG = false;
+      setResultNG();
+      return;
+    }
+    // step18
+    if (!com2SendMultiple(KM030Commands.SET_WNOZZLE_4)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PINB"), portMap.get("PIND"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    if (!autoSetMultipleRowResultStatu(56, (com1Bytes[2] & (1 << 7)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    for (int i = 57; i < 60; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com1Bytes[3] & (1 << (i - 57))) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+
+    if (isSetMultipleRowNG) {
+      isSetMultipleRowNG = false;
+      setResultNG();
+      return;
+    }
+    // step19
+    if (!com2SendMultiple(KM030Commands.SET_DRYMOT)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PIND"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    if (!autoSetMultipleRowResultStatu(60, (com1Bytes[2] & (1 << 6)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+      setResultNG();
+      return;
+    }
+
+    // step20
+    if (!com2SendMultiple(KM030Commands.SET_WPUMP)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PIND"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    if (!autoSetMultipleRowResultStatu(61, (com1Bytes[2] & (1 << 7)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+      setResultNG();
+      return;
+    }
+
+    // step21
+    if (!com2SendMultiple(KM030Commands.SET_DEMOT)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PINE"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    if (!autoSetMultipleRowResultStatu(62, (com1Bytes[2] & (1 << 5)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+      setResultNG();
+      return;
+    }
+
+    // step22
+    if (!com2SendMultiple(KM030Commands.SET_WVALUE)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PIND"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    if (!autoSetMultipleRowResultStatu(63, (com1Bytes[2] & (1 << 3)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+      setResultNG();
+      return;
+    }
+
+    // step23
+    if (!com2SendMultiple(KM030Commands.SET_MODELEDC)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PINB"))) {
+      setResultNG();
+      return;
+    }
+    // 串口1不允许数据改变
+
+    if (!autoSetMultipleRowResultStatu(64, (com1Bytes[2] & (1 << 3)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+      setResultNG();
+      return;
+    }
+
+    // step24
+    if (!com2SendMultiple(KM030Commands.SET_ULT_LIGHT)) {
+      setResultNG();
+      return;
+    }
+    // 端子置位操作
+    if (!mcu_portRead(portMap.get("PINE"))) {
+      setResultNG();
+      return;
+    }
+    if (!autoSetMultipleRowResultStatu(65, (com1Bytes[2] & (1 << 4)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+      setResultNG();
+      return;
+    }
+    // step25--ADC
+    if (!com2SendMultiple(KM030Commands.CLR_ALL)) {
+      setResultNG();
+      return;
+    }
+    for (int i = 66; i < 68; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com2Bytes[5] & (1 << (i - 66))) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+    if (!autoSetMultipleRowResultStatu(68, (com2Bytes[5] & (1 << 4)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[6] << 8) | (com2Bytes[7] & 0xff)), 69) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[8] << 8) | (com2Bytes[9] & 0xff)), 70) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[10] << 8) | (com2Bytes[11] & 0xff)), 71) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[12] << 8) | (com2Bytes[13] & 0xff)), 72) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[14] << 8) | (com2Bytes[15] & 0xff)), 73) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[18] << 8) | (com2Bytes[19] & 0xff)), 74) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[20] << 8) | (com2Bytes[21] & 0xff)), 75) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (isSetMultipleRowNG) {
+      isSetMultipleRowNG = false;
+      setResultNG();
+      return;
+    }
+    // step26
+    if (!mcu_portSet(0x40, 0x1C, 0x01)) {
+      setResultNG();
+      return;
+    }
+    delay(6000);
+    if (!com2SendMultiple(KM030Commands.CLR_ALL)) {
+      setResultNG();
+      return;
+    }
+    for (int i = 76; i < 78; i++) {
+      if (!autoSetMultipleRowResultStatu(i, (com2Bytes[5] & (1 << (i - 76))) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+        isSetMultipleRowNG = true;
+      }
+    }
+    if (!autoSetMultipleRowResultStatu(78, (com2Bytes[5] & (1 << 4)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[6] << 8) | (com2Bytes[7] & 0xff)), 79) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[8] << 8) | (com2Bytes[9] & 0xff)), 80) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[10] << 8) | (com2Bytes[11] & 0xff)), 81) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[12] << 8) | (com2Bytes[13] & 0xff)), 82) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[14] << 8) | (com2Bytes[15] & 0xff)), 83) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[18] << 8) | (com2Bytes[19] & 0xff)), 84) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (!setADC(String.format("%03X", (com2Bytes[20] << 8) | (com2Bytes[21] & 0xff)), 85) && !spotButt.isSelected()) {
+      isSetMultipleRowNG = true;
+    }
+    if (isSetMultipleRowNG) {
+      isSetMultipleRowNG = false;
+      setResultNG();
+      return;
+    }
+    // 结束啦
+    if (!mcu_portSet(0x00, 0x00, 0x01)) {
+      setResultNG();
+      return;
+    }
+    isFinished = true;
   }
 
   /**
    * 电流和电压测试
    * 
-   * @param pb
    * @param pc
+   * @param pf
+   * @param pg
    * @param buff
    * @param step
    * @return
    */
-  public boolean volAndCurTest(int pb, int pc, byte[] buff, int step) {
-    if (!mcu_portSet(pb, pc)) {
+  public boolean volAndCurTest(int pc, int pf, int pg, byte[] buff, int step) {
+    if (!mcu_portSet(pc, pf, pg)) {
       setResultNG();
       return false;
     }
@@ -842,7 +1241,6 @@ public class KM036Client extends LoyerFrame {
     if (!autoSetResultStatu(step, rec_data)) {
       return false;
     }
-    com3HasData = false;
     return true;
   }
 
@@ -850,420 +1248,44 @@ public class KM036Client extends LoyerFrame {
     try {
       Thread.sleep(delays);
     } catch (InterruptedException e) {
-      logger.error("程序延时错误:" + e.getMessage());
+      logger.error(e.getMessage());
     }
   }
 
-  public void TOKYtest() {
+  /**
+   * 蜂鸣器检测
+   * 
+   * @return
+   */
+  public boolean checkBuzz() {
 
-    // step1
-    writeParams2TOKYMeter(Commands.WRITE_VOL_CHANNEL_3);
-    writeParams2TOKYMeter(Commands.WRITE_VOL_DP_0);
-
-    if (!volAndCurTest(0x01, 0x00, Commands.READ_VOL, 0) && !spotButt.isSelected()) {
-      return;
-    }
-    // step2
-    if (!volAndCurTest(0x0e, 0x00, Commands.READ_VOL, 1) && !spotButt.isSelected()) {
-      return;
-    }
-    // step3
-    if (!checkBuzz()) {
-      return;
-    }
-    // step4
-    if (!com2SendMultiple(KM036Commands.SET_WA)) {
+    if (!com2SendMultiple(KM030Commands.SET_BUZZER)) {
       setResultNG();
-      return;
+      JOptionPane.showMessageDialog(null, "与被测板通信失败!");
+      return false;
     }
-    com2HasData = false;
-    // com2Buzy.signal();
-    if (!volAndCurTest(0x1a, 0x00, Commands.READ_VOL, 3) && !spotButt.isSelected()) {
-      return;
-    }
-    // step5
-    if (!com2SendMultiple(KM036Commands.SET_SEAT)) {
+    int back = JOptionPane.showConfirmDialog(null, "产品蜂鸣器是否鸣叫?", "询问", JOptionPane.YES_NO_OPTION);
+    if (back != JOptionPane.YES_OPTION) {
       setResultNG();
-      return;
+      return false;
     }
-    com2HasData = false;
-    // com2Buzy.signal();
-    if (!volAndCurTest(0x62, 0x00, Commands.READ_VOL, 4) && !spotButt.isSelected()) {
-      return;
-    }
-    // step6
-    writeParams2TOKYMeter(Commands.WRITE_VOL_CHANNEL_2);
-    writeParams2TOKYMeter(Commands.WRITE_VOL_DP_1);
-    if (!volAndCurTest(0x82, 0x01, Commands.READ_VOL, 5) && !spotButt.isSelected()) {
-      return;
-    }
-    // step7
-    writeParams2TOKYMeter(Commands.WRITE_CUR_DP_3);
-    if (!volAndCurTest(0x82, 0x04, Commands.READ_CUR, 6) && !spotButt.isSelected()) {
-      return;
-    }
-    // step8
-    if (!volAndCurTest(0x02, 0x03, Commands.READ_VOL, 7) && !spotButt.isSelected()) {
-      return;
-    }
-    // step9
-    if (!volAndCurTest(0x02, 0x06, Commands.READ_CUR, 8) && !spotButt.isSelected()) {
-      return;
-    }
-    // step10
-    if (!mcu_portSet(0x02, 0x00)) {
-      setResultNG();
-      return;
-    }
-    if (!mcu_portRead(portMap.get("PIND"), portMap.get("PINF"))) {
-      setResultNG();
-      return;
-    }
-    if (!autoSetMultipleRowResultStatu(9, (com1Bytes[2] & (1 << 0)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!autoSetMultipleRowResultStatu(10, (com1Bytes[2] & (1 << 1)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!autoSetMultipleRowResultStatu(11, (com1Bytes[2] & (1 << 7)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!autoSetMultipleRowResultStatu(12, (com1Bytes[3] & (1 << 1)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    for (int i = 13; i < 20; i++) {
-      if (!autoSetMultipleRowResultStatu(i, (com1Bytes[3] & (1 << 0)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-        isSetMultipleRowNG = true;
-      }
-    }
-    if (isSetMultipleRowNG) {
-      isSetMultipleRowNG = false;
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step11
-    if (!mcu_portRead(portMap.get("PING"))) {
-      setResultNG();
-      return;
-    }
-    if (!setADC(String.format("%02X", com1Bytes[2]), 20) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step12
-    if (!com2SendMultiple(KM036Commands.SET_WSTEP_1)) {
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    if (!mcu_portRead(portMap.get("PING"))) {
-      setResultNG();
-      return;
-    }
-    if (!setADC(String.format("%02X", com1Bytes[2]), 21) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step13
-    if (!com2SendMultiple(KM036Commands.SET_WSTEP_3)) {
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    if (!mcu_portRead(portMap.get("PING"))) {
-      setResultNG();
-      return;
-    }
-    if (!setADC(String.format("%02X", com1Bytes[2]), 22) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step14
-    if (!com2SendMultiple(KM036Commands.SET_WSTEP_2)) {
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    if (!mcu_portRead(portMap.get("PING"))) {
-      setResultNG();
-      return;
-    }
-    if (!setADC(String.format("%02X", com1Bytes[2]), 23) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step15
-    if (!com2SendMultiple(KM036Commands.SET_WSTEP_4)) {
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    if (!mcu_portRead(portMap.get("PING"))) {
-      setResultNG();
-      return;
-    }
-    if (!setADC(String.format("%02X", com1Bytes[2]), 24) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step16
-    if (!mcu_portRead(portMap.get("PINF"))) {
-      setResultNG();
-      return;
-    }
-    if (!setADC(String.format("%02X", (com1Bytes[2] >> 2) & 0x1f), 25) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step17
-    if (!com2SendMultiple(KM036Commands.SET_WNOZZLE_1)) {
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    if (!mcu_portRead(portMap.get("PINF"))) {
-      setResultNG();
-      return;
-    }
-    if (!setADC(String.format("%02X", (com1Bytes[2] >> 2) & 0x1f), 26) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step18
-    if (!com2SendMultiple(KM036Commands.SET_WNOZZLE_3)) {
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    if (!mcu_portRead(portMap.get("PINF"))) {
-      setResultNG();
-      return;
-    }
-    if (!setADC(String.format("%02X", (com1Bytes[2] >> 2) & 0x1f), 27) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step19
-    if (!com2SendMultiple(KM036Commands.SET_WNOZZLE_2)) {
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    if (!mcu_portRead(portMap.get("PINF"))) {
-      setResultNG();
-      return;
-    }
-    if (!setADC(String.format("%02X", (com1Bytes[2] >> 2) & 0x1f), 28) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step20
-    if (!com2SendMultiple(KM036Commands.SET_WNOZZLE_4)) {
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    if (!mcu_portRead(portMap.get("PINF"))) {
-      setResultNG();
-      return;
-    }
-    if (!setADC(String.format("%02X", (com1Bytes[2] >> 2) & 0x1f), 29) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step21
-    if (!mcu_portRead(portMap.get("PINE"))) {
-      setResultNG();
-      return;
-    }
-    if (!autoSetMultipleRowResultStatu(30, (com1Bytes[2] & (1 << 4)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step22
-    if (!com2SendMultiple(KM036Commands.SET_WPUMP)) {
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    // com2Buzy.signal();
-    if (!mcu_portRead(portMap.get("PINE"))) {
-      setResultNG();
-      return;
-    }
-    if (!autoSetMultipleRowResultStatu(31, (com1Bytes[2] & (1 << 4)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step23
-    if (!mcu_portRead(portMap.get("PINE"))) {
-      setResultNG();
-      return;
-    }
-    if (!autoSetMultipleRowResultStatu(32, (com1Bytes[2] & (1 << 5)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step24
-    if (!com2SendMultiple(KM036Commands.SET_DEMOT)) {
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    // com2Buzy.signal();
-    if (!mcu_portRead(portMap.get("PINE"))) {
-      setResultNG();
-      return;
-    }
-    if (!autoSetMultipleRowResultStatu(33, (com1Bytes[2] & (1 << 5)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step25
-    if (!mcu_portRead(portMap.get("PINE"))) {
-      setResultNG();
-      return;
-    }
-    if (!autoSetMultipleRowResultStatu(34, (com1Bytes[2] & (1 << 6)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step26
-    if (!com2SendMultiple(KM036Commands.SET_WVALUE)) {
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    // com2Buzy.signal();
-    if (!mcu_portRead(portMap.get("PINE"))) {
-      setResultNG();
-      return;
-    }
-    if (!autoSetMultipleRowResultStatu(35, (com1Bytes[2] & (1 << 6)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-      setResultNG();
-      return;
-    }
-    com1HasData = false;
-    // com1Buzy.signal();
-    // step27
-    if (!com2SendMultiple(KM036Commands.CLR_ALL)) {
-      setResultNG();
-      return;
-    }
-    for (int i = 36; i < 38; i++) {
-      if (!autoSetMultipleRowResultStatu(i, (com2Bytes[5] & (1 << (i - 35))) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-        isSetMultipleRowNG = true;
-      }
-    }
-    if (!autoSetMultipleRowResultStatu(38, (com2Bytes[5] & (1 << 4)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!setADC(String.format("%03X", (com2Bytes[6] << 8) | (com2Bytes[7] & 0xff)), 39) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!setADC(String.format("%03X", (com2Bytes[8] << 8) | (com2Bytes[9] & 0xff)), 40) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!setADC(String.format("%03X", (com2Bytes[10] << 8) | (com2Bytes[11] & 0xff)), 41) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!setADC(String.format("%03X", (com2Bytes[12] << 8) | (com2Bytes[13] & 0xff)), 42) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!setADC(String.format("%03X", (com2Bytes[14] << 8) | (com2Bytes[15] & 0xff)), 43) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (isSetMultipleRowNG) {
-      isSetMultipleRowNG = false;
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    // com2Buzy.signal();
-    // step28
-    if (!mcu_portSet(0x02, 0xe0)) {
-      setResultNG();
-      return;
-    }
-    delay(2000);
-    if (!com2SendMultiple(KM036Commands.CLR_ALL)) {
-      setResultNG();
-      return;
-    }
-    for (int i = 44; i < 46; i++) {
-      if (!autoSetMultipleRowResultStatu(i, (com2Bytes[5] & (1 << (i - 43))) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-        isSetMultipleRowNG = true;
-      }
-    }
-    if (!autoSetMultipleRowResultStatu(46, (com2Bytes[5] & (1 << 4)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!setADC(String.format("%03X", (com2Bytes[6] << 8) | (com2Bytes[7] & 0xff)), 47) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!setADC(String.format("%03X", (com2Bytes[8] << 8) | (com2Bytes[9] & 0xff)), 48) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!setADC(String.format("%03X", (com2Bytes[10] << 8) | (com2Bytes[11] & 0xff)), 49) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!setADC(String.format("%03X", (com2Bytes[12] << 8) | (com2Bytes[13] & 0xff)), 50) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (!setADC(String.format("%03X", (com2Bytes[14] << 8) | (com2Bytes[15] & 0xff)), 51) && !spotButt.isSelected()) {
-      isSetMultipleRowNG = true;
-    }
-    if (isSetMultipleRowNG) {
-      isSetMultipleRowNG = false;
-      setResultNG();
-      return;
-    }
-    com2HasData = false;
-    // com2Buzy.signal();
-    // ===============
-
-    com1HasData = false;
-    com2HasData = false;
-    com3HasData = false;
-
-    if (!mcu_portSet(0x00, 0x00)) {
-      setResultNG();
-      return;
-    }
-    isFinished = true;
+    return true;
   }
+
+  public boolean com2SendMultiple(byte[] buff) {
+    byte b = 0;
+    do {
+      if (b++ >= 5) {
+        b = 0;
+        return false;
+      }
+      SerialPortTools.writeBytes(COM[1], buff);
+      delay(300);
+    } while (!com2HasData);
+    com2HasData = false;
+    return true;
+  }
+
   // ====================================================================================================================
   class TimeThreadListener implements Runnable {
 
@@ -1305,13 +1327,19 @@ public class KM036Client extends LoyerFrame {
     public void run() {
       while (true) {
 
-     // 线程运行状态指示
+        // 线程运行状态指示
         testThreadButt.setSelected(!testThreadButt.isSelected());
 
-        // ==========初始化完成=================================
         if (mcu_initFlag) {
           mcu_initFlag = false;
           TOKYtest();
+          /*
+           * writeParams2TOKYMeter(Commands.WRITE_VOL_CHANNEL_3);
+           * writeParams2TOKYMeter(Commands.WRITE_VOL_DP_0); delay(1000); if
+           * (!com3SendMultiple(Commands.READ_VOL) && !spotButt.isSelected()) {
+           * setResultNG(); return; } if (!autoSetResultStatu(0, rec_data) &&
+           * !spotButt.isSelected()) { return; }
+           */
         }
 
         // ==========测试完成===================================

@@ -76,7 +76,7 @@ public class Initialize extends JFrame {
     progressBar.setForeground(new Color(0, 204, 51));
     contentPane.add(progressBar, BorderLayout.SOUTH);
     
-    timer = new Timer(200, e -> {
+    timer = new Timer(20, e -> {
       count++;
       if(count >= 100) count = 0;
       progressBar.setValue(count);

@@ -37,7 +37,19 @@ public class LogIn extends LogInFrame {
         isDataView = true;
         frame.dispose();
         KM036Client.getDataView(context, type, "km036", smtBox.isSelected() ? "smt" : "unit");
-      } 
+      } else if (type.endsWith("1411")) {
+        isDataView = true;
+        frame.dispose();
+        KM030Client.getDataView(context, type, "km030", smtBox.isSelected() ? "smt" : "unit");
+      } else if (type.endsWith("1431")) {
+        isDataView = true;
+        frame.dispose();
+        KM030Client2.getDataView(context, type, "km0302", smtBox.isSelected() ? "smt" : "unit");
+      } else if (type.endsWith("1135")) {
+        isDataView = true;
+        frame.dispose();
+        KM047Client.getDataView(context, type, "km047", smtBox.isSelected() ? "smt" : "unit");
+      }
       else {
         JOptionPane.showMessageDialog(null, "暂无该机种数据!");
       }
