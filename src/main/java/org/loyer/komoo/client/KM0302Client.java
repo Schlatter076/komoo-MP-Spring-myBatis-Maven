@@ -34,7 +34,7 @@ import org.springframework.context.ApplicationContext;
 import loyer.gui.LoyerFrame;
 import loyer.serial.SerialPortTools;
 
-public class KM030Client2 extends LoyerFrame {
+public class KM0302Client extends LoyerFrame {
 
   /** 测试数据表 */
   private JTable table;
@@ -72,7 +72,7 @@ public class KM030Client2 extends LoyerFrame {
   private boolean isFinished = false;
 
   /** 本类日志记录对象 */
-  private static final Logger logger = LoggerFactory.getLogger(KM030Client2.class);
+  private static final Logger logger = LoggerFactory.getLogger(KM0302Client.class);
 
   /** 单片机端口名和地址映射集合 */
   private Map<String, Byte> portMap;
@@ -98,7 +98,7 @@ public class KM030Client2 extends LoyerFrame {
 
       @Override
       public void run() {
-        KM030Client2 win = new KM030Client2(ac, type, base, baseType);
+        KM0302Client win = new KM0302Client(ac, type, base, baseType);
         win.frame.setVisible(true);
         win.setTableCellRenderer();
         win.initLoad();
@@ -106,7 +106,7 @@ public class KM030Client2 extends LoyerFrame {
     });
   }
 
-  public KM030Client2(ApplicationContext ac, String type, String base, String baseType) {
+  public KM0302Client(ApplicationContext ac, String type, String base, String baseType) {
 
     this.context = ac; // 获取Spring上下文对象
     recordService = (IRecordDataService) context.getBean(base + baseType + "RecordServiceImpl");

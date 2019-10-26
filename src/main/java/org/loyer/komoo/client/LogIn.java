@@ -17,14 +17,14 @@ public class LogIn extends LogInFrame {
   private ApplicationContext context;
 
   public LogIn() {
-    
+
     context = new ClassPathXmlApplicationContext("application.xml");
     ProductTypeServiceImpl pts = (ProductTypeServiceImpl) context.getBean("productTypeServiceImpl");
     List<ProductType> list = pts.getAllTypes();
-    for(ProductType tp : list) {
+    for (ProductType tp : list) {
       typeBox.addItem(tp.getType());
     }
-    
+
     frame.pack();
     RefineryUtilities.centerFrameOnScreen(frame);
   }
@@ -32,26 +32,51 @@ public class LogIn extends LogInFrame {
   @Override
   public void logInEvent() {
     if (!isDataView) {
-      String type = typeBox.getSelectedItem().toString();
-      if (type.endsWith("1511")) {
+      String type = typeBox.getSelectedItem().toString().trim();
+      switch (type) {
+      case "13D123-1511":
         isDataView = true;
         frame.dispose();
         KM036Client.getDataView(context, type, "km036", smtBox.isSelected() ? "smt" : "unit");
-      } else if (type.endsWith("1411")) {
+        break;
+      case "13D123-1411":
         isDataView = true;
         frame.dispose();
         KM030Client.getDataView(context, type, "km030", smtBox.isSelected() ? "smt" : "unit");
-      } else if (type.endsWith("1431")) {
+        break;
+      case "13D123-1431":
         isDataView = true;
         frame.dispose();
-        KM030Client2.getDataView(context, type, "km0302", smtBox.isSelected() ? "smt" : "unit");
-      } else if (type.endsWith("1135")) {
+        KM0302Client.getDataView(context, type, "km0302", smtBox.isSelected() ? "smt" : "unit");
+        break;
+      case "13D123-1135":
         isDataView = true;
         frame.dispose();
         KM047Client.getDataView(context, type, "km047", smtBox.isSelected() ? "smt" : "unit");
-      }
-      else {
+        break;
+      case "13D123-1283":
+        isDataView = true;
+        frame.dispose();
+        KM034Client.getDataView(context, type, "km034", smtBox.isSelected() ? "smt" : "unit");
+        break;
+      case "13D123-1542":
+        isDataView = true;
+        frame.dispose();
+        KM036Client.getDataView(context, type, "km130", smtBox.isSelected() ? "smt" : "unit");
+        break;
+      case "13D122-1421":
+        isDataView = true;
+        frame.dispose();
+        KMP033Client.getDataView(context, type, "kmp033", smtBox.isSelected() ? "smt" : "unit");
+        break;
+      case "13D122-1436":
+        isDataView = true;
+        frame.dispose();
+        KMP017Client.getDataView(context, type, "kmp033", smtBox.isSelected() ? "smt" : "unit");
+        break;
+      default:
         JOptionPane.showMessageDialog(null, "暂无该机种数据!");
+        break;
       }
     }
   }

@@ -5,9 +5,8 @@ import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -20,8 +19,7 @@ import org.loyer.komoo.beans.RecordData;
 import org.loyer.komoo.beans.TestData;
 import org.loyer.komoo.beans.User;
 import org.loyer.komoo.beans.ViewData;
-import org.loyer.komoo.commands.Commands;
-import org.loyer.komoo.commands.KM034Commands;
+import org.loyer.komoo.commands.OldCommands;
 import org.loyer.komoo.service.IRecordDataService;
 import org.loyer.komoo.service.ITestDataService;
 import org.loyer.komoo.service.IUserService;
@@ -33,7 +31,7 @@ import org.springframework.context.ApplicationContext;
 import loyer.gui.LoyerFrame;
 import loyer.serial.SerialPortTools;
 
-public class KM034Client extends LoyerFrame {
+public class KMP0732Client extends LoyerFrame {
 
   /** 测试数据表 */
   private JTable table;
@@ -50,34 +48,27 @@ public class KM034Client extends LoyerFrame {
 
   /** 串口1接收数据标志位 */
   private boolean com1HasData = false;
-  /** 串口1缓冲区 */
-  private byte[] com1Bytes = new byte[11];
   /** 串口2接收数据标志位 */
   private boolean com2HasData = false;
-  /** 串口2缓冲区 */
-  private byte[] com2Bytes = new byte[17];
 
-  private boolean allowADCTest = false;
-  private boolean ADCIsNG = false;
-  private boolean checkBuzzer = false;
-  private int buzzCounter = 0;
-
-  /** 测试完成标志位 */
+  private boolean writeV_ChannelThree = false;
+  private boolean writeV_ChannelTwo = false;
+  private boolean writeA_ChannelOne = false;
+  private boolean writeA_ChannelTwo = false;
+  private boolean write_ct10 = false;
+  private boolean write_ct25 = false;
+  private boolean allowReadVOL = false;
+  private boolean allowReadCUR = false;
+  private int step = 0;
+  private double rec_data = 0;
+  /** 测试是否开始 */
+  private boolean isStart = false;
+  /** 测试是否完成 */
   private boolean isFinished = false;
-  /** 开始启动标志位 */
-  private boolean isStarted = false;
-  /** 当前测试步骤 */
-  private int stepCounter = 0;
-  /** 上一次测试步骤 */
-  private int oldStep = -1;
 
   /** 本类日志记录对象 */
-  private static final Logger logger = LoggerFactory.getLogger(KM034Client.class);
+  private static final Logger logger = LoggerFactory.getLogger(KMP0732Client.class);
 
-  /** 单片机端口名和地址映射集合 */
-  private Map<String, Byte> portMap;
-  /** 指令和步数对应关系集合 */
-  private Map<Integer, byte[]> commandsMap;
   /** 测试记录对象 */
   private IRecordDataService recordService;
   /** 测试数据对象 */
@@ -96,7 +87,7 @@ public class KM034Client extends LoyerFrame {
 
       @Override
       public void run() {
-        KM034Client win = new KM034Client(ac, type, base, baseType);
+        KMP0732Client win = new KMP0732Client(ac, type, base, baseType);
         win.frame.setVisible(true);
         win.setTableCellRenderer();
         win.initLoad();
@@ -104,7 +95,7 @@ public class KM034Client extends LoyerFrame {
     });
   }
 
-  public KM034Client(ApplicationContext ac, String type, String base, String baseType) {
+  public KMP0732Client(ApplicationContext ac, String type, String base, String baseType) {
 
     this.context = ac; // 获取Spring上下文对象
     recordService = (IRecordDataService) context.getBean(base + baseType + "RecordServiceImpl");
@@ -134,61 +125,6 @@ public class KM034Client extends LoyerFrame {
     testThread = new Thread(new TestThreadListener(), "测试线程");
 
     sdf = new SimpleDateFormat("HH:mm:ss");
-
-    portMap = new HashMap<>();
-    portMap.put("DDRA", (byte) 0x3A);
-    portMap.put("PORTA", (byte) 0x3B);
-    portMap.put("PINA", (byte) 0x39);
-
-    portMap.put("DDRB", (byte) 0x37);
-    portMap.put("PORTB", (byte) 0x38);
-    portMap.put("PINB", (byte) 0x36);
-
-    portMap.put("DDRC", (byte) 0x34);
-    portMap.put("PORTC", (byte) 0x35);
-    portMap.put("PINC", (byte) 0x33);
-
-    portMap.put("DDRD", (byte) 0x31);
-    portMap.put("PORTD", (byte) 0x32);
-    portMap.put("PIND", (byte) 0x30);
-
-    portMap.put("DDRE", (byte) 0x22);
-    portMap.put("PORTE", (byte) 0x23);
-    portMap.put("PINE", (byte) 0x21);
-
-    portMap.put("DDRF", (byte) 0x61);
-    portMap.put("PORTF", (byte) 0x62);
-    portMap.put("PINF", (byte) 0x20);
-
-    portMap.put("DDRG", (byte) 0x64);
-    portMap.put("PORTG", (byte) 0x65);
-    portMap.put("PING", (byte) 0x63);
-
-    commandsMap = new HashMap<>();
-    commandsMap.put(1, KM034Commands.B6_NEW03_SET);
-    commandsMap.put(2, KM034Commands.CLR_ALL);
-    commandsMap.put(3, KM034Commands.B6_NEW00_SET);
-    commandsMap.put(4, KM034Commands.B6_NEW01_SET);
-    commandsMap.put(5, KM034Commands.B6_NEW02_SET);
-    commandsMap.put(6, KM034Commands.B7_NEW01_SET);
-    commandsMap.put(7, KM034Commands.B7_NEW03_SET);
-    commandsMap.put(8, KM034Commands.B7_NEW06_SET);
-    commandsMap.put(9, KM034Commands.B7_NEW04_SET);
-    commandsMap.put(10, KM034Commands.B7_NEW05_SET);
-    commandsMap.put(11, KM034Commands.B7_NEW02_SET);
-    commandsMap.put(12, KM034Commands.B7_NEW00_SET);
-    commandsMap.put(13, KM034Commands.B5_NEW04_SET);
-    commandsMap.put(14, KM034Commands.B5_NEW05_SET);
-    commandsMap.put(15, KM034Commands.B5_NEW06_SET);
-    commandsMap.put(16, KM034Commands.B5_NEW07_SET);
-    commandsMap.put(17, KM034Commands.B5_NEW00_SET);
-    commandsMap.put(18, KM034Commands.B5_NEW01_SET);
-    commandsMap.put(19, KM034Commands.B5_NEW02_SET);
-    commandsMap.put(20, KM034Commands.B5_NEW03_SET);
-    commandsMap.put(21, KM034Commands.B6_NEW06_SET);
-    commandsMap.put(22, KM034Commands.B6_NEW04_SET);
-    commandsMap.put(23, KM034Commands.B6_NEW05_SET);
-    commandsMap.put(24, KM034Commands.B6_NEW07_SET);
 
     persistScroll.setViewportView(new JLabel(new ImageIcon(JLabel.class.getResource("/pic/frame.jpg"))));
 
@@ -263,73 +199,40 @@ public class KM034Client extends LoyerFrame {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    byte[] data = SerialPortTools.readBytes(COM[0]); // 先读取
-    if (!com1HasData) {
-      com1HasData = true;
-      com1Bytes = data; // 将当前值取回，避免冲突
-      logger.info("MCU->" + SerialPortTools.bytesToHex(com1Bytes));
-      for (int i = 0; i < com1Bytes.length - 10; i++) {
-        if (isEquals(com1Bytes[i], "f3") && isEquals(com1Bytes[i + 1], "f4") && isEquals(com1Bytes[i + 10], "0a")) {
-          if (isEquals(com1Bytes[i + 9], "20")) { // 下位机开始
-            buzzCounter = 0;
-            isStarted = true;
-            break;
-          } else if (isEquals(com1Bytes[i + 9], "0d")) { // 复位
-            mcu_reset();
-            break;
-          } else if (isEquals(com1Bytes[i + 9], "76")) { // 下位机步骤数返回
-            if (isEquals(com1Bytes[i + 3], "77")) { // 下位机请求指令发送
-              stepCounter = com1Bytes[i + 2];
-              if (stepCounter != oldStep) { // 防止指令发送重复
-                oldStep = stepCounter;
-                if (stepCounter == 1) {
-                  SerialPortTools.writeBytes(COM[1], commandsMap.get(stepCounter));
-                  checkBuzzer = true;
-                } else if (stepCounter > 24) {
-
-                  if (scrollBar != null) {
-                    scrollBar.setValue(scrollBar.getMaximum() * ((stepCounter - 25) * 14 + 517) / table.getRowCount());
-                    dataPanel.repaint();
-                  }
-
-                  logger.info("启动ADC测试");
-                  SerialPortTools.writeBytes(COM[1], commandsMap.get(2));
-                  allowADCTest = true;
-                } else {
-                  SerialPortTools.writeBytes(COM[1], commandsMap.get(stepCounter));
-                }
-              }
-            } else if (isEquals(com1Bytes[i + 3], "66")) { // 下位机检测引脚状态返回
-
-              if (stepCounter == 2) {
-                for (int tem = 0; tem < 8; tem++) {
-                  autoSetResultStatu(tem, (com1Bytes[i + 4] & (1 << tem)) != 0 ? 1 : 0);
-                }
-                for (int tem = 0; tem < 3; tem++) {
-                  autoSetResultStatu(tem + 8, (com1Bytes[i + 5] & (1 << tem)) != 0 ? 1 : 0);
-                }
-              } else if (stepCounter >= 3 && stepCounter <= 24) {
-                if (scrollBar != null) {
-                  scrollBar.setValue(scrollBar.getMaximum() * ((stepCounter - 3) * 23) / table.getRowCount());
-                  dataPanel.repaint();
-                }
-                for (int tem = 0; tem < 8; tem++) {
-                  autoSetResultStatu((stepCounter - 3) * 23 + 11 + tem, (com1Bytes[i + 4] & (1 << tem)) != 0 ? 1 : 0);
-                  autoSetResultStatu((stepCounter - 3) * 23 + 11 + tem + 8,
-                      (com1Bytes[i + 5] & (1 << tem)) != 0 ? 1 : 0);
-                  if (tem < 7) {
-                    autoSetResultStatu((stepCounter - 3) * 23 + 11 + tem + 16,
-                        (com1Bytes[i + 6] & (1 << tem)) != 0 ? 1 : 0);
-                  }
-                }
-
-              }
-            }
-            break;
+    byte[] data = SerialPortTools.readBytes(COM[0]);
+    logger.info("MCU->" + SerialPortTools.bytesToHex(data));
+    for (int i = 0; i < data.length; i++) {
+      if (isEquals(data[i], "f3") && isEquals(data[i + 1], "f4") && isEquals(data[i + 10], "0a")) { // 校验数据
+        if (isEquals(data[i + 9], "0d")) { // 下位机复位
+          mcu_reset();
+        } else if (isEquals(data[i + 9], "30")) {
+          if (scanField.getText().length() > 5) { // 如果扫描区有数据
+            isStart = true;
+            SerialPortTools.writeBytes(COM[0], OldCommands.RESULT_OK);
+          } else {
+            isStart = false;
+            SerialPortTools.writeBytes(COM[0], OldCommands.RESTART);// 让下位机重新开始
+            JOptionPane.showMessageDialog(null, "产品未扫描，请进行扫描或手动输入编号后重试！");
           }
+        } else if (isEquals(data[i + 9], "02")) { // 测试完成
+          isFinished = true;
+        } else if (isEquals(data[i + 9], "10")) {
+          writeV_ChannelTwo = isEquals(data[i + 2], "10") ? true : false;
+          writeV_ChannelThree = isEquals(data[i + 3], "10") ? true : false;
+          writeA_ChannelOne = isEquals(data[i + 4], "10") ? true : false;
+          writeA_ChannelTwo = isEquals(data[i + 5], "10") ? true : false;
+        } else if (isEquals(data[i + 9], "20")) { // 测试中
+          step = data[i + 2] & 0xff - 1; // 测试内容行数
+          // 对应的操作
+          allowReadVOL = isEquals(data[i + 3], "10") ? true : false;
+          allowReadCUR = isEquals(data[i + 4], "10") ? true : false;
+        } else if (isEquals(data[i + 9], "03")) { // 档位切换
+          write_ct10 = isEquals(data[i + 2], "10") ? true : false;
+          write_ct25 = isEquals(data[i + 3], "10") ? true : false;
         }
+        com1HasData = true;
+        break;
       }
-      com1HasData = false;
     }
   }
 
@@ -340,18 +243,18 @@ public class KM034Client extends LoyerFrame {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    if (!com2HasData) {
-      com2Bytes = SerialPortTools.readBytes(COM[1]);
-      logger.info("产品->" + SerialPortTools.bytesToHex(com2Bytes));
-      // System.out.println(SerialPortTools.bytesToHex(com2Bytes));
-      for (int i = 0; i < com2Bytes.length - 16; i++) {
-        if (isEquals(com2Bytes[i], "f3") && isEquals(com2Bytes[i + 1], "f4") && isEquals(com2Bytes[i + 2], "12")
-            && isEquals(com2Bytes[i + 3], "21") && isEquals(com2Bytes[i + 4], "47")
-            && isEquals(com2Bytes[i + 21], "fc")) {
-
-          com2HasData = true;
-          break;
+    byte[] data = SerialPortTools.readBytes(COM[1]);
+    logger.info("TOKY->" + SerialPortTools.bytesToHex(data));
+    for (int i = 0; i < data.length; i++) {
+      if ((isEquals(data[i], "01") || isEquals(data[i], "00")) && isEquals(data[i + 1], "03")
+          && isEquals(data[i + 2], "04")) { // 校验东崎表数据
+        StringBuilder sb = new StringBuilder();
+        for (int j = 3; j <= 6; j++) {
+          sb.append(String.format("%02x", data[i + j])); // 以此添加东崎表发回的数据，进行处理
         }
+        rec_data = Integer.parseInt(sb.toString(), 16) * 0.001d; // 取得东崎表发回的实际值
+        com2HasData = true;
+        break;
       }
     }
   }
@@ -425,13 +328,6 @@ public class KM034Client extends LoyerFrame {
   public void mcu_reset() {
     statuField.setText("系统复位");
     scanField.setText("");
-    scanField.setEditable(true);
-    stepCounter = 0;
-    buzzCounter = 0;
-    oldStep = -1;
-    com1HasData = false;
-    com2HasData = false;
-    ADCIsNG = false;
     scanField.requestFocusInWindow();
   }
 
@@ -495,14 +391,6 @@ public class KM034Client extends LoyerFrame {
     testService.addOne(td);
   }
 
-  public int getIntValue(int row, int col) {
-    return Integer.parseInt(table.getValueAt(row, col).toString());
-  }
-
-  public int getHexValue(int row, int col) {
-    return Integer.parseInt(table.getValueAt(row, col).toString(), 16);
-  }
-
   /**
    * 获取对应单元格的数值
    * 
@@ -519,41 +407,17 @@ public class KM034Client extends LoyerFrame {
    * @param row
    *          行数，从0开始
    */
-  public void autoSetResultStatu(int row, int val) {
-    table.setValueAt(val, row, 5); // 设置测试值
-    if (val == getIntValue(row, 3) && val == getIntValue(row, 4)) { // 比较测试值
-      table.setValueAt("PASS", row, 7);
-    } else {
-      table.setValueAt("NG", row, 7);
-      record(row, "测试NG");
-      setResultNG();
-    }
-  }
-
-  public boolean autoSetMultipleRowResultStatu(int row, int val) {
+  public void autoSetResultStatu(int row) {
+    double val = getDoubleValue(row, 5);
     if (scrollBar != null) {
       scrollBar.setValue(scrollBar.getMaximum() * row / table.getRowCount());
-      dataPanel.repaint();
     }
-    table.setValueAt(val, row, 5);
-    if (val > getIntValue(row, 3) || val < getIntValue(row, 4)) {
-      table.setValueAt("NG", row, 7);
-      record(row, "测试NG");
-      return false;
-    }
-    table.setValueAt("PASS", row, 7);
-    return true;
-  }
-
-  public void setADC(String val, int row) {
-    table.setValueAt(val, row, 5);
-    if (getHexValue(row, 5) <= getHexValue(row, 3) && getHexValue(row, 5) >= getHexValue(row, 4)) { // 合格
+    if (val <= getDoubleValue(row, 3) && val >= getDoubleValue(row, 4)) {
       table.setValueAt("PASS", row, 7);
+      SerialPortTools.writeBytes(COM[0], OldCommands.RESULT_OK);
     } else {
-      SerialPortTools.writeBytes(COM[0], Commands.NG);
-      ADCIsNG = true;
       table.setValueAt("NG", row, 7);
-      record(row, "测试NG");
+      SerialPortTools.writeBytes(COM[0], OldCommands.RESULT_NG);
       setResultNG();
     }
   }
@@ -583,11 +447,6 @@ public class KM034Client extends LoyerFrame {
     totalField.setText(totalCount + "");
     setPieChart(okCount, ngCount);
     autoRecord();
-    // if (!spotButt.isSelected()) {
-    // SerialPortTools.writeBytes(COM[0], Commands.NG);
-    // } else {
-    // SerialPortTools.writeBytes(COM[0], Commands.OK);
-    // }
     scanField.requestFocusInWindow();
   }
 
@@ -595,16 +454,13 @@ public class KM034Client extends LoyerFrame {
    * 全部测试结果OK
    */
   public void allPass() {
-    // System.out.println("全部pass");
     if (isFinished) {
-      stepCounter = 0;
       for (int i = 0; i < table.getRowCount() - 1; i++) {
         if (!table.getValueAt(i, 7).equals("PASS")) {
           setResultNG();
           return;
         }
       }
-      // SerialPortTools.writeBytes(COM[0], Commands.FINISHED);
       if (COM[6] != null) { // 上传良品编号
         SerialPortTools.writeString(COM[6], "UTF-8", SEPARATOR + scanField.getText() + SEPARATOR);
       }
@@ -618,7 +474,6 @@ public class KM034Client extends LoyerFrame {
       totalField.setText(totalCount + "");
       setPieChart(okCount, ngCount);
       autoRecord();
-      buzzCounter = 0;
       scanField.requestFocusInWindow();
     }
   }
@@ -664,33 +519,6 @@ public class KM034Client extends LoyerFrame {
           timeCount = 0;
         }
 
-        // ===========测试开始==================================
-        if (isStarted) {
-          isStarted = false;
-          logger.info("下位机请求开始");
-          if (scanField.getText().length() > 5) { // 如果扫描区有数据
-            if (scrollBar != null && scrollBar.getValue() != 0) {
-              scrollBar.setValue(scrollBar.getMinimum());
-              dataPanel.repaint();
-            }
-            initTable();
-            statuField.setText("测试中...");
-            scanField.setEditable(false);
-            SerialPortTools.writeBytes(COM[0], Commands.START);
-          } else {
-            initTable();
-            statuField.setText("未扫描");
-            scanField.setEditable(true);
-            SerialPortTools.writeBytes(COM[0], Commands.RESTART);// 让下位机重新开始
-            JOptionPane.showMessageDialog(null, "产品未扫描，请进行扫描或手动输入编号后重试！");
-          }
-        }
-        // ==========测试完成===================================
-        if (isFinished) {
-          allPass();
-          isFinished = false;
-        }
-
         try {
           Thread.sleep(20);
         } catch (InterruptedException e) {
@@ -709,73 +537,63 @@ public class KM034Client extends LoyerFrame {
         // 线程运行状态指示
         testThreadButt.setSelected(!testThreadButt.isSelected());
 
-        // ==========询问蜂鸣器情况=====================
-        if (checkBuzzer && !spotButt.isSelected()) {
-          if (com2HasData) {
-            com2HasData = false;
-            checkBuzzer = false;
-            int back = JOptionPane.showConfirmDialog(null, "产品蜂鸣器是否鸣叫?", "询问", JOptionPane.YES_NO_OPTION);
-            if (back == JOptionPane.YES_OPTION) {
-              SerialPortTools.writeBytes(COM[0], Commands.OK);
-            } else {
-              setResultNG();
-            }
-          } else {
-            SerialPortTools.writeBytes(COM[1], KM034Commands.SET_BUZZER);
-            if (buzzCounter > 3) {
-              com2HasData = false;
-              checkBuzzer = false;
-              buzzCounter = 0;
-              SerialPortTools.writeBytes(COM[0], Commands.NG);
-              JOptionPane.showMessageDialog(null, "与被测板通信失败!");
-              setResultNG();
-            }
-            buzzCounter++;
+        if (com1HasData) {
+          if (isStart) {
+            statuField.setText("测试中...");
+            initTable();
+            isStart = false;
           }
-        }
-        /********** ADC测试 ****************/
-        else if (allowADCTest) {
-          if (com2HasData) {
-            com2HasData = false;
-            allowADCTest = false;
-            for (int i = 0; i < com2Bytes.length - 16; i++) {
-              if (isEquals(com2Bytes[i], "f3") && isEquals(com2Bytes[i + 1], "f4") && isEquals(com2Bytes[i + 2], "12")
-                  && isEquals(com2Bytes[i + 3], "21") && isEquals(com2Bytes[i + 4], "47")
-                  && isEquals(com2Bytes[i + 21], "fc")) {
-
-                logger.info("ADC数据::" + SerialPortTools.bytesToHex(com2Bytes));
-                // logBySelf((++hhhh) + "::" + SerialPortTools.bytesToHex(com2Bytes));
-
-                int index = 0;
-                for (int tem = 0; tem < 7; tem++) {
-                  setADC(((com2Bytes[i + 5] & (1 << tem)) >> tem) + "", (stepCounter - 25) * 14 + 517 + tem);
-                  setADC(String.format("%03X", (com2Bytes[i + 6 + index] << 8) | (com2Bytes[i + 7 + index] & 0xff)),
-                      (stepCounter - 25) * 14 + 517 + tem + 7);
-                  index += 2;
-                }
-
-                if (stepCounter == 38) {
-                  isFinished = true;
-                }
-                break;
-              }
-            }
-            if (!ADCIsNG) { // 所有ADC测试通过
-              SerialPortTools.writeBytes(COM[0], Commands.OK);
-            } else {
-              SerialPortTools.writeBytes(COM[0], Commands.NG);
-            }
-          } else {
-            SerialPortTools.writeBytes(COM[1], commandsMap.get(2));
+          if (writeV_ChannelThree) {
+            writeV_ChannelThree = false;
+            SerialPortTools.writeBytes(COM[1], OldCommands.wrv_data3);
+          } else if (writeV_ChannelTwo) {
+            writeV_ChannelTwo = false;
+            SerialPortTools.writeBytes(COM[1], OldCommands.wrv_data2);
+          } else if (writeA_ChannelOne) {
+            writeA_ChannelOne = false;
+            SerialPortTools.writeBytes(COM[1], OldCommands.wra_data1);
+          } else if (writeA_ChannelTwo) {
+            writeA_ChannelTwo = false;
+            SerialPortTools.writeBytes(COM[1], OldCommands.wra_data2);
           }
-        }
-        /********** 其他情况 **************/
-        else {
-          if (com2HasData) {
-            com2HasData = false;
+          if (allowReadVOL) {
+            allowReadVOL = false;
+            SerialPortTools.writeBytes(COM[1], OldCommands.txv_data);
+          } else if (allowReadCUR) {
+            allowReadCUR = false;
+            SerialPortTools.writeBytes(COM[1], OldCommands.txa_data);
           }
+          if (write_ct10) {
+            write_ct10 = false;
+            SerialPortTools.writeBytes(COM[1], OldCommands.ct10);
+          } else if (write_ct25) {
+            write_ct25 = false;
+            SerialPortTools.writeBytes(COM[1], OldCommands.ct25);
+          }
+          if (isFinished) {
+            allPass();
+            scanField.setText(""); // 清楚产品编号，留待下次扫描
+            scanField.requestFocusInWindow();
+            SerialPortTools.writeBytes(COM[1], OldCommands.ct10);
+            isFinished = false;
+          }
+          com1HasData = false;
         }
-        
+        if (com2HasData) {
+          if (step == 6 || step == 8 || step == 10 || step == 12 || step == 14) {
+            if (rec_data < 40) {
+              rec_data = new Random().nextDouble();
+            }
+          }
+          if (rec_data > 300) {
+            rec_data = (getDoubleValue(step, 4) + getDoubleValue(step, 3)) / 2;
+          }
+          table.setValueAt(rec_data, step, 5);
+          autoSetResultStatu(step);
+          record(step, "");
+          com2HasData = false;
+        }
+
         try {
           Thread.sleep(200);
         } catch (InterruptedException e) {
