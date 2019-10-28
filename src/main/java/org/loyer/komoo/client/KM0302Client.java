@@ -1090,7 +1090,7 @@ public class KM0302Client extends LoyerFrame {
       return;
     }
     for (int i = 61; i < 63; i++) {
-      if (!autoSetMultipleRowResultStatu(i, (com2Bytes[5] & (1 << (i - 66))) != 0 ? 1 : 0)) {
+      if (!autoSetMultipleRowResultStatu(i, (com2Bytes[5] & (1 << (i - 61))) != 0 ? 1 : 0)) {
         isSetMultipleRowNG = true;
       }
     }
@@ -1134,7 +1134,7 @@ public class KM0302Client extends LoyerFrame {
       return;
     }
     for (int i = 71; i < 73; i++) {
-      if (!autoSetMultipleRowResultStatu(i, (com2Bytes[5] & (1 << (i - 76))) != 0 ? 1 : 0)) {
+      if (!autoSetMultipleRowResultStatu(i, (com2Bytes[5] & (1 << (i - 71))) != 0 ? 1 : 0)) {
         isSetMultipleRowNG = true;
       }
     }
