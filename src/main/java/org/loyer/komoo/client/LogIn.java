@@ -49,6 +49,11 @@ public class LogIn extends LogInFrame {
         frame.dispose();
         KM0302Client.getDataView(context, type, "km0302", smtBox.isSelected() ? "smt" : "unit");
         break;
+      case "13D123-1431-1":
+        isDataView = true;
+        frame.dispose();
+        KM0303Client.getDataView(context, type, "km0303", smtBox.isSelected() ? "smt" : "unit");
+        break;
       case "13D123-1135":
         isDataView = true;
         frame.dispose();
