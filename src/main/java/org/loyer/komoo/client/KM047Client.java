@@ -556,15 +556,16 @@ public class KM047Client extends LoyerFrame {
 
   public void setADC(String val, int row) {
     table.setValueAt(val, row, 5);
-    if (getHexValue(row, 5) <= getHexValue(row, 3) && getHexValue(row, 5) >= getHexValue(row, 4)) { // 合格
-      table.setValueAt("PASS", row, 7);
-    } else {
+    if (getHexValue(row, 5) > getHexValue(row, 3) && getHexValue(row, 5) < getHexValue(row, 4)) {
       SerialPortTools.writeBytes(COM[0], Commands.NG);
       ADCIsNG = true;
       table.setValueAt("NG", row, 7);
       record(row, "测试NG");
       setResultNG();
+      return;
     }
+    table.setValueAt("PASS", row, 7);
+    record(row, "测试PASS");
   }
 
   /*

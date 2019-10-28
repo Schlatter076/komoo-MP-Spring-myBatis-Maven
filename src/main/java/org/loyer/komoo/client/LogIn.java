@@ -74,6 +74,16 @@ public class LogIn extends LogInFrame {
         frame.dispose();
         KMP017Client.getDataView(context, type, "kmp033", smtBox.isSelected() ? "smt" : "unit");
         break;
+      case "13D122-1391":
+        isDataView = true;
+        frame.dispose();
+        KMP017Client.getDataView(context, type, "kmp073", smtBox.isSelected() ? "smt" : "unit");
+        break;
+      case "13D122-1391-1":
+        isDataView = true;
+        frame.dispose();
+        KMP017Client.getDataView(context, type, "kmp0732", smtBox.isSelected() ? "smt" : "unit");
+        break;
       default:
         JOptionPane.showMessageDialog(null, "暂无该机种数据!");
         break;
