@@ -759,6 +759,7 @@ public class KM130Client extends LoyerFrame {
     initCountAndPieChart();
     initCOM(0);
     initCOM(1);
+    initCOM(2);
     initCOM(6);
     timeThread.start();
     testThread.start();

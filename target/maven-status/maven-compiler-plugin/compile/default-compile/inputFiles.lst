@@ -1,6 +1,7 @@
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\client\UsartTools.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikmp073unitRecordDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\IProductTypeDao.java
+L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm0303unitTestDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikmp017smtTestDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Kmp0732ServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km030unitRecordServiceImpl.java
@@ -33,10 +34,13 @@ L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\or
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\beans\TestData.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km036smtRecordServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km030unitTestServiceImpl.java
+L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm0303unitRecordDao.java
+L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm0303smtRecordDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm036unitRecordDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm0302smtRecordDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm033smtRecordDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Kmp073smtTestServiceImpl.java
+L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm0303Dao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm047unitTestDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\client\ReportView.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\commands\KM033Commands.java
@@ -57,6 +61,7 @@ L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\or
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Kmp033ServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km036smtTestServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\commands\Commands.java
+L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\client\KM0303Client.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km130ServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\commands\KM070Commands.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\client\KM034Client.java
@@ -71,6 +76,7 @@ L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\or
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\commands\OldCommands.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm036smtRecordDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikmp073unitTestDao.java
+L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km0303smtTestServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\client\MyLineChart.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km030smtRecordServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm047smtTestDao.java
@@ -85,6 +91,7 @@ L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\or
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikmp033smtTestDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Kmp033smtRecordServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\commands\KM034Commands.java
+L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm0303smtTestDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Kmp033smtTestServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm070unitTestDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Kmp073unitTestServiceImpl.java
@@ -94,6 +101,7 @@ L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\or
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\beans\ProductType.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km033ServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm130unitTestDao.java
+L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km0303ServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\UserServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm070smtTestDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km033smtRecordServiceImpl.java
@@ -117,6 +125,7 @@ L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\or
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm036Dao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\client\LogIn.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km0302unitTestServiceImpl.java
+L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km0303smtRecordServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Kmp073unitRecordServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\ITestDataService.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikmp033unitTestDao.java
@@ -146,6 +155,8 @@ L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\or
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km070ServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Kmp017unitRecordServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm0302unitRecordDao.java
+L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km0303unitTestServiceImpl.java
+L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\service\impl\Km0303unitRecordServiceImpl.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikmp017smtRecordDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\dao\Ikm0302unitTestDao.java
 L:\00Kyokuto-Projects-Loyer\komoo\komoo-MP-Spring-myBatis-Maven\src\main\java\org\loyer\komoo\commands\KM036Commands.java

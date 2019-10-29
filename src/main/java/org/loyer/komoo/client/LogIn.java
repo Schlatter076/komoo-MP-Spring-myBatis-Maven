@@ -24,7 +24,7 @@ public class LogIn extends LogInFrame {
     for (ProductType tp : list) {
       typeBox.addItem(tp.getType());
     }
-
+    
     frame.pack();
     RefineryUtilities.centerFrameOnScreen(frame);
   }

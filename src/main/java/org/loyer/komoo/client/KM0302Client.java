@@ -734,6 +734,7 @@ public class KM0302Client extends LoyerFrame {
       return false;
     }
     table.setValueAt("PASS", row, 7);
+    record(row, "测试PASS");
     return true;
   }
 
