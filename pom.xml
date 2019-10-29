@@ -199,6 +199,15 @@
 						</goals>
 						<configuration>
 							<transformers>
+								<!-- 配置以下两项，防止打包时spring依赖说明被覆盖 -->
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.handlers</resource>
+								</transformer>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.schemas</resource>
+								</transformer>
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<mainClass>org.loyer.komoo.client.Initialize</mainClass>
@@ -218,28 +227,13 @@
 					<argLine>-Dfile.encoding=UTF-8</argLine>
 				</configuration>
 			</plugin>
-			<!-- 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.2</version>
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/locallib</outputDirectory>
-							<overWriteReleases>false</overWriteReleases>
-							<overWriteSnapshots>false</overWriteSnapshots>
-							<overWriteIfNewer>true</overWriteIfNewer>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			-->
+			<!-- 这个插件可以将依赖全部打包到指定目录 -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> 
+				<version>2.2</version> <executions> <execution> <id>copy-dependencies</id> 
+				<phase>package</phase> <goals> <goal>copy-dependencies</goal> </goals> <configuration> 
+				<outputDirectory>${project.build.directory}/locallib</outputDirectory> <overWriteReleases>false</overWriteReleases> 
+				<overWriteSnapshots>false</overWriteSnapshots> <overWriteIfNewer>true</overWriteIfNewer> 
+				</configuration> </execution> </executions> </plugin> -->
 		</plugins>
 	</build>
 </project>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.loyer.komoo.dao.Ikm036unitTestDao">
+
+	<select id="selectAllByDate" resultType="TestData">
+		SELECT
+		id,product_num,step,items,upper,lower,value,unit,result,times,date,remark
+		FROM km036unit_testdata WHERE date=#{date}
+	</select>
+
+  <select id="selectStepById" resultType="_int">
+    SELECT step FROM km036unit_testdata WHERE id=#{id}
+  </select>
+  
+  <select id="selectProductNumById" resultType="string">
+    SELECT product_num FROM km036unit_testdata WHERE id=#{id}
+  </select>
+  
+  <select id="selectIdsBydate" resultType="java.math.BigInteger">
+    SELECT id FROM km036unit_testdata
+  </select>
+  
+  <select id="selectTestDataById" resultType="TestData">
+    SELECT
+    id,product_num,step,items,upper,lower,value,unit,result,times,date,remark
+    FROM km036unit_testdata WHERE id=#{id}
+  </select>
+
+	<insert id="insertOne" parameterType="TestData">
+		INSERT INTO
+    km036unit_testdata(product_num,step,items,upper,lower,value,unit,result,times,date,remark)
+    VALUES(#{product_num},#{step},#{items},#{upper},#{lower},#{value},#{unit},#{result},#{times},#{date},#{remark})
+	</insert>
+
+</mapper>

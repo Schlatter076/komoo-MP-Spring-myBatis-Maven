@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.loyer.komoo.dao.Ikm047smtRecordDao">
+
+	<select id="selectByDate" resultType="RecordData">
+		SELECT id,name,sum,ok,ng,seconds,date FROM km047smt_record WHERE date=#{date}
+	</select>
+	
+	<select id="selectAll" resultType="RecordData">
+	 SELECT id,name,sum,ok,ng,seconds,date FROM km047smt_record
+	</select>
+
+	<insert id="insertOne" parameterType="RecordData">
+		INSERT INTO km047smt_record(name,sum,ok,ng,seconds,date) VALUES(#{name},
+		#{sum}, #{ok}, #{ng}, #{seconds}, #{date})
+	</insert>
+	
+	<update id="UpdateOne" parameterType="RecordData">
+    UPDATE km047smt_record SET name=#{name}, sum=#{sum}, ok=#{ok}, ng=#{ng}, seconds=#{seconds} WHERE date=#{date}
+	</update>
+
+</mapper>
