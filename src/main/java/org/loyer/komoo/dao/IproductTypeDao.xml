@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.loyer.komoo.dao.IproductTypeDao">
+
+  <select id="selectAllTypes" resultType="ProductType">
+    SELECT id,type FROM product_type
+  </select>
+  
+  <select id="selectTypeById" resultType="ProductType">
+    SELECT id,type FROM product_type where id=#{id}
+  </select>
+  
+</mapper>

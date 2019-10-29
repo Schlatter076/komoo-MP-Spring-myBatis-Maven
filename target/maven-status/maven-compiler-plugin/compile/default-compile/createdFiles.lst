@@ -54,7 +54,6 @@ org\loyer\komoo\service\impl\Km030smtTestServiceImpl.class
 org\loyer\komoo\client\KM036Client$1.class
 org\loyer\komoo\client\KM130Client$1.class
 org\loyer\komoo\dao\Ikm0302smtRecordDao.class
-org\loyer\komoo\dao\IProductTypeDao.class
 org\loyer\komoo\client\LogIn$1.class
 org\loyer\komoo\dao\Ikm036smtRecordDao.class
 org\loyer\komoo\dao\Ikm0302Dao.class
@@ -83,6 +82,7 @@ org\loyer\komoo\beans\TestData.class
 org\loyer\komoo\commands\KM033Commands.class
 org\loyer\komoo\service\impl\Km0302unitRecordServiceImpl.class
 org\loyer\komoo\dao\Ikmp0732smtRecordDao.class
+org\loyer\komoo\dao\IproductTypeDao.class
 org\loyer\komoo\dao\IRecordDataDao.class
 org\loyer\komoo\client\KM0302Client.class
 org\loyer\komoo\dao\Ikmp073smtTestDao.class
@@ -163,7 +163,6 @@ org\loyer\komoo\dao\Ikm033unitRecordDao.class
 org\loyer\komoo\service\impl\Km034unitTestServiceImpl.class
 org\loyer\komoo\dao\Ikmp0732unitTestDao.class
 org\loyer\komoo\service\impl\Km036unitRecordServiceImpl.class
-org\loyer\komoo\dao\IUserDao.class
 org\loyer\komoo\client\KMP073Client.class
 org\loyer\komoo\dao\Ikm0303smtRecordDao.class
 org\loyer\komoo\service\impl\Km0302ServiceImpl.class
@@ -195,6 +194,7 @@ org\loyer\komoo\dao\Ikm030smtTestDao.class
 org\loyer\komoo\service\impl\Km030ServiceImpl.class
 org\loyer\komoo\dao\Ikm033smtTestDao.class
 org\loyer\komoo\client\UsartTools$SerialParam.class
+org\loyer\komoo\dao\IuserDao.class
 org\loyer\komoo\dao\Ikm036unitRecordDao.class
 org\loyer\komoo\service\impl\Kmp033smtTestServiceImpl.class
 org\loyer\komoo\service\impl\Km130ServiceImpl.class

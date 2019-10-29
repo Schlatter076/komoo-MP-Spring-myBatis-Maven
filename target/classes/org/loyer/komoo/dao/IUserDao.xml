@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.loyer.komoo.dao.IUserDao">
+<mapper namespace="org.loyer.komoo.dao.IuserDao">
 
   <select id="selectUserById" resultType="User">
     SELECT id,username,password FROM user_man where id=#{id}

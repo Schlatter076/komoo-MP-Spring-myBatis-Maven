@@ -1,20 +1,20 @@
 package org.loyer.komoo.service.impl;
 
-import java.util.List;
-
 import org.loyer.komoo.beans.ProductType;
-import org.loyer.komoo.dao.IProductTypeDao;
+import org.loyer.komoo.dao.IproductTypeDao;
 import org.loyer.komoo.service.IProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProductTypeServiceImpl implements IProductTypeService {
 
   @Autowired
-  private IProductTypeDao dao;
+  private IproductTypeDao dao;
   
-  public void setDao(IProductTypeDao dao) {
+  public void setDao(IproductTypeDao dao) {
     this.dao = dao;
   }
 

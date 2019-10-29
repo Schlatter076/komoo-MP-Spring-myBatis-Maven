@@ -1,0 +1,6 @@
+[DEBUG][2019-10-29 14:36:01][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@432475dc [wrapping: com.mysql.cj.jdbc.ConnectionImpl@6a4b117f]]
+[DEBUG][2019-10-29 14:36:01][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
+[DEBUG][2019-10-29 14:36:01][org.loyer.komoo.dao.IProductTypeDao.selectAllTypes]- ==> Parameters: 
+[DEBUG][2019-10-29 14:54:51][org.loyer.komoo.dao.IproductTypeDao.selectAllTypes]- ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@432475dc [wrapping: com.mysql.cj.jdbc.ConnectionImpl@6a4b117f]]
+[DEBUG][2019-10-29 14:54:51][org.loyer.komoo.dao.IproductTypeDao.selectAllTypes]- ==>  Preparing: SELECT id,type FROM product_type 
+[DEBUG][2019-10-29 14:54:51][org.loyer.komoo.dao.IproductTypeDao.selectAllTypes]- ==> Parameters: 
