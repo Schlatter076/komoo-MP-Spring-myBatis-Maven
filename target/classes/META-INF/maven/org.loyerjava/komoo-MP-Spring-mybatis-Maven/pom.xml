@@ -182,6 +182,10 @@
 
 	<!-- 添加插件，指定主类 -->
 	<build>
+		<!--配置此项防止项目不把xml文件包含在类路径里 -->
+		<!--<resources> <resource> <directory>src/main/java</directory> <includes> 
+			<include>**/*.xml</include> </includes> &lt;!&ndash;默认是true&ndash;&gt; &lt;!&ndash;<filtering>true</filtering>&ndash;&gt; 
+			</resource> </resources> -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

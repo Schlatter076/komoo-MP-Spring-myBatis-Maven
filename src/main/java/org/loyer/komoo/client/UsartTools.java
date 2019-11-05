@@ -382,7 +382,7 @@ public class UsartTools {
             case SerialPortEvent.DSR:  // 4 待发送数据准备好了
             case SerialPortEvent.RI:  // 5 振铃指示
             case SerialPortEvent.OUTPUT_BUFFER_EMPTY:  // 2 输出缓冲区已清空
-              JOptionPane.showMessageDialog(null, COM1.getName() + "::" + arg0.toString());
+              //JOptionPane.showMessageDialog(null, COM1.getName() + "::" + arg0.toString());
               break;
             case SerialPortEvent.DATA_AVAILABLE: 
               //有数据到达
