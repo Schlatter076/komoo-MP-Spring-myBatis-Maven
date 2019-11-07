@@ -9,6 +9,12 @@
 		id,product_num,step,items,upper,lower,value,unit,result,times,date,remark
 		FROM km036smt_testdata WHERE date=#{date}
 	</select>
+	
+	<select id="selectAllByDateAndStep" resultType="TestData">
+    SELECT
+    id,product_num,step,items,upper,lower,value,unit,result,times,date,remark
+    FROM km036smt_testdata WHERE date=#{0} AND step=#{1}
+  </select>
 
   <select id="selectStepById" resultType="_int">
     SELECT step FROM km036smt_testdata WHERE id=#{id}

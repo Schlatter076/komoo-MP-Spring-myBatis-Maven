@@ -14,5 +14,5 @@ public interface ITestDataDao {
   public List<BigInteger> selectIdsBydate(String date);
   public TestData selectTestDataById(BigInteger id);
   public void insertOne(TestData data);
-
+  public List<TestData> selectAllByDateAndStep(String date, int step);
 }

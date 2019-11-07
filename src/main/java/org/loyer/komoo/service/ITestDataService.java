@@ -13,4 +13,5 @@ public interface ITestDataService {
   public List<BigInteger> getIdsBydate(String date);
   public TestData getTestDataById(BigInteger id);
   public void addOne(TestData data);
+  public List<TestData> getAllByDateAndStep(String date, int step);
 }

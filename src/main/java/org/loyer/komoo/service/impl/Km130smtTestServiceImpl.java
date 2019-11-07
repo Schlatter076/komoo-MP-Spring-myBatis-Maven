@@ -49,4 +49,9 @@ public class Km130smtTestServiceImpl implements ITestDataService {
     dao.insertOne(data);
   }
 
+  @Override
+  public List<TestData> getAllByDateAndStep(String date, int step) {
+    return dao.selectAllByDateAndStep(date, step);
+  }
+
 }

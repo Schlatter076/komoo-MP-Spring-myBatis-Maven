@@ -87,7 +87,7 @@ public class KM130Client extends LoyerFrame {
   private Thread testThread;
 
   private ApplicationContext context;
-  
+
   private boolean mcu_initFlag;
 
   private boolean mcu_portSetFlag;
@@ -409,6 +409,7 @@ public class KM130Client extends LoyerFrame {
       System.exit(0);
     }
   }
+
   /**
    * 获取CRC校验码
    * 
@@ -459,10 +460,16 @@ public class KM130Client extends LoyerFrame {
   public void outData() {
     List<RecordData> records = recordService.getAllRecordDatas();
     List<TestData> tests = testService.getAllByDate(date);
+    List<TestData> adtests = testService.getAllByDateAndStep(date, 42);
+
+    for (TestData td : adtests) {
+      td.setValue(Integer.parseInt(td.getValue(), 16) * 5.00 / 1024 + "");
+    }
 
     if (records.size() > 0 && tests.size() > 0) {
       MyLineChart.saveAsJPEG(records);
       DataUtils.outExcl(tests, PRODUCT_NAME, date);
+      DataUtils.outExcl(adtests, PRODUCT_NAME + "(ADC版)", date);
     }
   }
 
@@ -750,6 +757,7 @@ public class KM130Client extends LoyerFrame {
       scanField.requestFocusInWindow();
     }
   }
+
   /**
    * 载入
    */
@@ -765,6 +773,7 @@ public class KM130Client extends LoyerFrame {
     testThread.start();
     scanField.requestFocusInWindow();
   }
+
   /**
    * 蜂鸣器检测
    * 
@@ -1153,7 +1162,7 @@ public class KM130Client extends LoyerFrame {
       setResultNG();
       return;
     }
-    
+
     if (!autoSetMultipleRowResultStatu(32, (com2Bytes[5] & (1 << 1)) != 0 ? 1 : 0) && !spotButt.isSelected()) {
       isSetMultipleRowNG = true;
     }
@@ -1219,13 +1228,14 @@ public class KM130Client extends LoyerFrame {
     com1HasData = false;
     com2HasData = false;
     com3HasData = false;
-    
+
     if (!mcu_portSet(0x00, 0x00)) {
       setResultNG();
       return;
     }
     isFinished = true;
   }
+
   // ====================================================================================================================
   class TimeThreadListener implements Runnable {
 
@@ -1267,7 +1277,7 @@ public class KM130Client extends LoyerFrame {
     public void run() {
       while (true) {
 
-     // 线程运行状态指示
+        // 线程运行状态指示
         testThreadButt.setSelected(!testThreadButt.isSelected());
 
         // ==========初始化完成=================================

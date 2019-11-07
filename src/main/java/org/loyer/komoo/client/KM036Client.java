@@ -458,10 +458,16 @@ public class KM036Client extends LoyerFrame {
   public void outData() {
     List<RecordData> records = recordService.getAllRecordDatas();
     List<TestData> tests = testService.getAllByDate(date);
-
+    List<TestData> adtests = testService.getAllByDateAndStep(date, 42);
+    
+    for(TestData td : adtests) {
+      td.setValue(Integer.parseInt(td.getValue(), 16) * 5.00 / 1024 + "");
+    }
+    
     if (records.size() > 0 && tests.size() > 0) {
       MyLineChart.saveAsJPEG(records);
       DataUtils.outExcl(tests, PRODUCT_NAME, date);
+      DataUtils.outExcl(adtests, PRODUCT_NAME + "(ADC版)", date);
     }
   }
 
